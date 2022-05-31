@@ -1,0 +1,92 @@
+<document xmlns="http://cnx.rice.edu/cnxml">
+  <title>Pitch Shifter with Single-Sideband AM</title>
+  <metadata xmlns:md="http://cnx.rice.edu/mdml">
+  <md:content-id>m15467</md:content-id>
+  <md:title>Pitch Shifter with Single-Sideband AM</md:title>
+  <md:abstract>Pitch shifting makes an interesting special effect, especially when applied to a speech signal. Single-sideband amplitude modulation (SSB-AM) is presented as a method to shift the spectrum of a source signal in the same way as basic AM, but with cancellation of one sideband to eliminate the “dual voice” sound of conventional AM. Pre-filtering of the source signal to avoid aliasing is also discussed.</md:abstract>
+  <md:uuid>4cde1ea2-6a7f-4997-a013-0f8c819fbf5e</md:uuid>
+</metadata>
+
+<content>
+
+<table id="labview_banner" frame="none" summary=""><tgroup cols="2">
+<colspec rowsep="0" colsep="0"/> <colspec colwidth="6in" rowsep="0" colsep="0"/>
+<tbody>
+  <row>
+    <entry morerows="3"><media id="idm7545440" alt=""><image src="../../media/LabVIEWq.png" mime-type="image/png"/></media></entry>
+    <entry> This module refers to LabVIEW, a software development environment that features a graphical programming language.
+       Please see the <link document="m15428">LabVIEW QuickStart Guide</link> module for tutorials and documentation that will help you:</entry>
+  </row>
+  <row> <entry>• Apply LabVIEW to Audio Signal Processing </entry> </row>
+  <row> <entry>• Get started with LabVIEW</entry> </row>
+  <row> <entry>• Obtain a fully-functional evaluation edition of LabVIEW</entry> </row>
+</tbody>
+</tgroup>
+</table>
+
+
+<section id="sec1">
+<title>Overview</title>
+
+<para id="par2">
+<term>Amplitude modulation</term> (<term>AM</term>) of a source signal divides the signal's spectrum into two copies, with
+one copy shifted towards higher frequency and the other copy shifted 
+towards lower frequency; refer to <link document="m15447">AM Mathematics</link> for a complete
+treatment of basic AM. The shifted and dual spectrum makes an interesting special effect when applied
+to a musical instrument or the human voice, creating the sensation of two different people speaking the
+identical phrase, for example.</para>
+
+<para id="par3">If one of these spectral images could somehow be cancelled out, AM seems to be a feasible
+way to implement a <term>pitch shifter</term>, a device or algorithm that shifts the source spectrum higher or
+lower in frequency. When this special effect is applied in real time, you can speak into a microphone and sound
+just like one of "Alvin and the Chipmunks." </para>
+
+<para id="par4">As an example of what you will be able accomplish by applying the techniques presented in this module, listen to this
+original speech clip <link resource="speech.wav">speech.wav</link> and its pitch-shifted version
+<link resource="speech_shifted.wav">speech_shifted.wav</link> (speech clip courtesy of the Open Speech Repository,
+<link url="http://www.voiptroubleshooter.com/open_speech">www.voiptroubleshooter.com/open_speech</link>; 
+the sentences are two of the many phonetically balanced <term>Harvard Sentences</term>, an important standard
+for the speech processing community).
+</para>
+
+</section>
+
+<section id="sec5">
+<title>Single-Sideband AM (SSB-AM)</title>
+
+<para id="par6">
+The screencast video of <link target-id="video-ssbtheory"/> develops the basic theory of 
+<term>single-sideband (SSB) modulation</term>, a technique borrowed from communications systems that provides a way to
+apply amplitude modulation with spectral image cancellation. 
+</para>
+
+<figure id="video-ssbtheory"><title><link url="https://youtu.be/aqS7q6RfOKM" window="new">https://youtu.be/aqS7q6RfOKM</link> (7:48)</title><media id="eip-idm390504848" display="block" alt="Insert alt text here"><video mime-type="video/mpeg" src="https://www.youtube.com/embed/aqS7q6RfOKM?rel=0" autoplay="false" width="640" height="460"/></media>
+
+
+<caption>[video] Single-sideband modulation for pitch shifting
+</caption></figure><para id="par8">
+As an exercise to ensure that you followed each step, draw a block diagram or flow diagram to show how the original signal
+is modified to produce the final shifted signal. Your diagram should include directed lines (arrows) to show signal flow,
+and should use symbols (blocks) for the multipliers, cosine and sine oscillators, Hilbert transformer, sign changer, and adder.
+</para>
+
+</section>
+
+<section id="sec9">
+<title>Pre-Filtering to Avoid Aliasing</title>
+
+<para id="par10">
+<term>Pre-filtering</term> the source signal ensures
+the shifted spectrum does not alias, since the source signal typically fills the 
+available bandwidth. The screencast video of <link target-id="video-prefilter"/> discusses the
+aliasing problem as well as the techniques you can use to design a suitable pre-filter.
+</para>
+
+<figure id="video-prefilter"><title><link url="https://youtu.be/M8NfbbJABWo" window="new">https://youtu.be/M8NfbbJABWo</link> (3:18)</title><media id="eip-idm474184624" display="block" alt="Insert alt text here"><video mime-type="video/mpeg" src="https://www.youtube.com/embed/M8NfbbJABWo?rel=0" autoplay="false" width="640" height="460"/></media>
+
+
+<caption>[video] Pre-filtering to avoid aliasing
+</caption></figure></section>
+
+</content>
+</document>

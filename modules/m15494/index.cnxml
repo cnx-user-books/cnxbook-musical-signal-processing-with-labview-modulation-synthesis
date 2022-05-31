@@ -1,0 +1,337 @@
+<document xmlns="http://cnx.rice.edu/cnxml" xmlns:m="http://www.w3.org/1998/Math/MathML">
+  <title>Chowning FM Synthesis Instruments in LabVIEW</title>
+  <metadata xmlns:md="http://cnx.rice.edu/mdml">
+  <md:content-id>m15494</md:content-id>
+  <md:title>Chowning FM Synthesis Instruments in LabVIEW</md:title>
+  <md:abstract>John Chowning pioneered frequency modulation (FM) synthesis in the 1970s, and demonstrated how the technique could simulate a diversity of instruments such as brass, woodwinds, and percussion. FM synthesis produces rich spectra from only two sinusoidal oscillators, and more interesting sounds can be produced by using a time-varying modulation index to alter the effective bandwidth and sideband amplitudes over time. A LabVIEW VI is developed to implement the sound of a clarinet, and the VI can be easily modified to simulate the sounds of many other instruments.</md:abstract>
+  <md:uuid>d6d0ca47-2337-41e3-9797-488be1714d9d</md:uuid>
+</metadata>
+
+<content>
+
+<table id="labview_banner" frame="none" summary=""><tgroup cols="2">
+<colspec rowsep="0" colsep="0"/> <colspec colwidth="6in" rowsep="0" colsep="0"/>
+<tbody>
+  <row>
+    <entry morerows="3"><media id="idp6404240" alt=""><image src="../../media/LabVIEWq.png" mime-type="image/png"/></media></entry>
+    <entry> This module refers to LabVIEW, a software development environment that features a graphical programming language.
+       Please see the <link document="m15428">LabVIEW QuickStart Guide</link> module for tutorials and documentation that will help you:</entry>
+  </row>
+  <row> <entry>• Apply LabVIEW to Audio Signal Processing </entry> </row>
+  <row> <entry>• Get started with LabVIEW</entry> </row>
+  <row> <entry>• Obtain a fully-functional evaluation edition of LabVIEW</entry> </row>
+</tbody>
+</tgroup>
+</table>
+
+
+<section id="sec1">
+<title>Overview</title>
+
+<para id="par2">
+		<term>Frequency modulation synthesis</term> (<term>FM synthesis</term>) produces incredibly rich
+		spectra from only two sinusoidal oscillators; refer to <link document="m15482">FM Mathematics</link> 
+		for a complete description of the spectral characteristics of FM synthesis. You can produce even more interesting
+		sounds with a time-varying modulation index to alter the effective bandwidth and
+		sideband amplitudes over time. This relatively simple modification to the basic FM equation 
+		creates tones with time-varying spectra to emulate many types of physical musical instruments.</para>
+
+<para id="par3">		John Chowning pioneered FM synthesis in the 1970s and demonstrated how the technique could simulate
+		instruments such as brass, woodwinds, and percussion. These techniques are the subject of this module.
+</para>
+
+</section>
+
+<section id="sec4">
+<title>Significance of Time-Varying Spectra</title>
+
+<para id="par5">
+		Physical musical instruments produce audio spectra that evolve with time. A typical sound begins with some type of dynamic
+		transient, for example, as pressure builds up within a brass instrument or when a percussion instrument is first struck. 
+		The sound continues with some type of quasi steady-state behavior when mechanical energy is continually applied, i.e., blowing
+		on a flute, bowing a violin string, and repeatedly striking a gong. Once the mechanical energy input ceases, the sound
+		concludes by decaying in some fashion to silence.</para>
+
+<para id="par6">		Clearly the amplitude of the instrument's audio signal changes during the course of the tone, following the typical attack-decay-sustain-release (ADSR)
+		envelope described in <link document="m15442">Analog Synthesis Modules</link>. Even more important, the <emphasis>intensity</emphasis> of the
+		higher-frequency spectral components changes as well. The high-frequency components are often more evident during the initial
+		transient. In fact, the dynamic nature of the spectra during the instrument's transient plays an important role in timbre perception.
+</para>
+
+</section>
+
+<section id="sec7">
+<title>FM Equation with Time-Varying Modulation Index</title>
+
+<para id="par8">
+The basic FM equation with time-varying amplitude and modulation index is presented in <link target-id="eqn-fm"/>:
+</para>
+
+<equation id="eqn-fm">
+
+
+
+<m:math>
+ <m:semantics>
+  <m:mrow>
+   <m:mi>y</m:mi><m:mo stretchy="false">(</m:mo><m:mi>t</m:mi><m:mo stretchy="false">)</m:mo><m:mo>=</m:mo><m:mi>a</m:mi><m:mo stretchy="false">(</m:mo><m:mi>t</m:mi><m:mo stretchy="false">)</m:mo><m:mi>sin</m:mi><m:mo>⁡</m:mo><m:mo stretchy="false">(</m:mo><m:mn>2</m:mn><m:mi>π</m:mi><m:msub>
+    <m:mi>f</m:mi>
+    <m:mi>c</m:mi>
+   </m:msub>
+   <m:mi>t</m:mi><m:mo>+</m:mo><m:mi>i</m:mi><m:mo stretchy="false">(</m:mo><m:mi>t</m:mi><m:mo stretchy="false">)</m:mo><m:mi>sin</m:mi><m:mo>⁡</m:mo><m:mo stretchy="false">(</m:mo><m:mn>2</m:mn><m:mi>π</m:mi><m:msub>
+    <m:mi>f</m:mi>
+    <m:mi>m</m:mi>
+   </m:msub>
+   <m:mi>t</m:mi><m:mo stretchy="false">)</m:mo><m:mo stretchy="false">)</m:mo>
+  </m:mrow>
+ <m:annotation encoding="MathType-MTEF">
+ </m:annotation>
+ </m:semantics>
+</m:math>
+
+</equation>
+
+<para id="par10">
+You can easily model a physical instrument with this equation by causing the modulation index
+<m:math>
+ <m:semantics>
+  <m:mrow>
+   <m:mi>i</m:mi><m:mo stretchy="false">(</m:mo><m:mi>t</m:mi><m:mo stretchy="false">)</m:mo>
+  </m:mrow>
+ <m:annotation encoding="MathType-MTEF">
+ </m:annotation>
+ </m:semantics>
+</m:math>
+to <emphasis>track</emphasis> the time-varying amplitude
+<m:math>
+ <m:semantics>
+  <m:mrow>
+   <m:mi>a</m:mi><m:mo stretchy="false">(</m:mo><m:mi>t</m:mi><m:mo stretchy="false">)</m:mo>
+  </m:mrow>
+ <m:annotation encoding="MathType-MTEF">
+ </m:annotation>
+ </m:semantics>
+</m:math>. In this way, a louder portion of the note also has more sidebands, because the modulation index effectively controls the bandwidth of the FM spectra.
+</para>
+
+</section>
+
+<section id="sec11">
+<title>Chowning Instruments</title>
+
+<para id="par12">
+John Chowning's publication, <cite><cite-title>The Synthesis of Complex Audio Spectra by Means of Frequency Modulation (Journal of the Audio Engineering Society, 21(7), 1973)</cite-title></cite>,
+describes a basic structure to implement <link target-id="eqn-fm"/> with the following parameters:
+</para>
+
+<list id="list13" list-type="bulleted">
+
+<item> 
+<m:math>
+ <m:semantics>
+  <m:mi>A</m:mi>
+ <m:annotation encoding="MathType-MTEF">
+ MathType@MTEF@5@5@+=feaagaart1ev2aqatCvAUfeBSjuyZL2yd9gzLbvyNv2CaerbuLwBLnhiov2DGi1BTfMBaeXatLxBI9gBaerbd9wDYLwzYb1uaebbnrfifHhDYfgasaacH8srps0lbbf9q8WrFfeuY=Hhbbf9v8qqaqFr0xc9pk0xbba9q8WqFfea0=yr0RYxir=Jbba9q8aq0=yq=He9q8qqQ8frFve9Fve9Ff0dmeaabaqaciGacaGaaeqabaWaaeaaeaaakeaacaWGbbaaaa@360D@</m:annotation>
+ </m:semantics>
+</m:math> - peak amplitude </item>
+<item> 
+<m:math>
+ <m:semantics>
+  <m:mrow>
+   <m:msub>
+    <m:mi>I</m:mi>
+    <m:mrow>
+     <m:mtext>max</m:mtext>
+    </m:mrow>
+   </m:msub>
+  </m:mrow>
+ <m:annotation encoding="MathType-MTEF">
+ MathType@MTEF@5@5@+=feaagaart1ev2aqatCvAUfeBSjuyZL2yd9gzLbvyNv2CaerbuLwBLnhiov2DGi1BTfMBaeXatLxBI9gBaerbd9wDYLwzYb1uaebbnrfifHhDYfgasaacH8srps0lbbf9q8WrFfeuY=Hhbbf9v8qqaqFr0xc9pk0xbba9q8WqFfea0=yr0RYxir=Jbba9q8aq0=yq=He9q8qqQ8frFve9Fve9Ff0dmeaabaqaciGacaGaaeqabaWaaeaaeaaakeaacaWGjbWaaSbaaSqaaiaab2gacaqGHbGaaeiEaaqabaaaaa@3910@</m:annotation>
+ </m:semantics>
+</m:math> - maximum value of modulation index i(t) </item>
+<item> 
+<m:math>
+ <m:semantics>
+  <m:mrow>
+   <m:msub>
+    <m:mi>I</m:mi>
+    <m:mrow>
+     <m:mtext>min</m:mtext>
+    </m:mrow>
+   </m:msub>
+  </m:mrow>
+ <m:annotation encoding="MathType-MTEF">
+ MathType@MTEF@5@5@+=feaagaart1ev2aqatCvAUfeBSjuyZL2yd9gzLbvyNv2CaerbuLwBLnhiov2DGi1BTfMBaeXatLxBI9gBaerbd9wDYLwzYb1uaebbnrfifHhDYfgasaacH8srps0lbbf9q8WrFfeuY=Hhbbf9v8qqaqFr0xc9pk0xbba9q8WqFfea0=yr0RYxir=Jbba9q8aq0=yq=He9q8qqQ8frFve9Fve9Ff0dmeaabaqaciGacaGaaeqabaWaaeaaeaaakeaacaWGjbWaaSbaaSqaaiaab2gacaqGPbGaaeOBaaqabaaaaa@390E@</m:annotation>
+ </m:semantics>
+ </m:math> - minimum value of modulation index
+<m:math>
+ <m:semantics>
+  <m:mrow>
+   <m:mi>i</m:mi><m:mo stretchy="false">(</m:mo><m:mi>t</m:mi><m:mo stretchy="false">)</m:mo>
+  </m:mrow>
+ <m:annotation encoding="MathType-MTEF">
+ MathType@MTEF@5@5@+=feaagaart1ev2aqatCvAUfeBSjuyZL2yd9gzLbvyNv2CaerbuLwBLnhiov2DGi1BTfMBaeXatLxBI9gBaerbd9wDYLwzYb1uaebbnrfifHhDYfgasaacH8srps0lbbf9q8WrFfeuY=Hhbbf9v8qqaqFr0xc9pk0xbba9q8WqFfea0=yr0RYxir=Jbba9q8aq0=yq=He9q8qqQ8frFve9Fve9Ff0dmeaabaqaciGacaGaaeqabaWaaeaaeaaakeaacaWGPbGaaiikaiaadshacaGGPaaaaa@3887@</m:annotation>
+ </m:semantics>
+</m:math>  </item>
+<item> 
+<m:math>
+ <m:semantics>
+  <m:mrow>
+   <m:msub>
+    <m:mi>f</m:mi>
+    <m:mi>c</m:mi>
+   </m:msub>
+  </m:mrow>
+ <m:annotation encoding="MathType-MTEF">
+ MathType@MTEF@5@5@+=feaagaart1ev2aqatCvAUfeBSjuyZL2yd9gzLbvyNv2CaerbuLwBLnhiov2DGi1BTfMBaeXatLxBI9gBaerbd9wDYLwzYb1uaebbnrfifHhDYfgasaacH8srps0lbbf9q8WrFfeuY=Hhbbf9v8qqaqFr0xc9pk0xbba9q8WqFfea0=yr0RYxir=Jbba9q8aq0=yq=He9q8qqQ8frFve9Fve9Ff0dmeaabaqaciGacaGaaeqabaWaaeaaeaaakeaacaWGMbWaaSbaaSqaaiaadogaaeqaaaaa@3746@</m:annotation>
+ </m:semantics>
+</m:math> [Hz] - carrier frequency </item>
+<item> 
+<m:math>
+ <m:semantics>
+  <m:mi>H</m:mi>
+ <m:annotation encoding="MathType-MTEF">
+ MathType@MTEF@5@5@+=feaagaart1ev2aqatCvAUfeBSjuyZL2yd9gzLbvyNv2CaerbuLwBLnhiov2DGi1BTfMBaeXatLxBI9gBaerbd9wDYLwzYb1uaebbnrfifHhDYfgasaacH8srps0lbbf9q8WrFfeuY=Hhbbf9v8qqaqFr0xc9pk0xbba9q8WqFfea0=yr0RYxir=Jbba9q8aq0=yq=He9q8qqQ8frFve9Fve9Ff0dmeaabaqaciGacaGaaeqabaWaaeaaeaaakeaacaWGibaaaa@3614@</m:annotation>
+ </m:semantics>
+ </m:math> - harmonicity ratio
+(<m:math>
+ <m:semantics>
+  <m:mrow>
+   <m:msub>
+    <m:mi>f</m:mi>
+    <m:mi>m</m:mi>
+   </m:msub>
+   <m:mo>/</m:mo><m:msub>
+    <m:mi>f</m:mi>
+    <m:mi>c</m:mi>
+   </m:msub>
+  </m:mrow>
+ <m:annotation encoding="MathType-MTEF">
+ MathType@MTEF@5@5@+=feaagaart1ev2aqatCvAUfeBSjuyZL2yd9gzLbvyNv2CaerbuLwBLnhiov2DGi1BTfMBaeXatLxBI9gBaerbd9wDYLwzYb1uaebbnrfifHhDYfgasaacH8srps0lbbf9q8WrFfeuY=Hhbbf9v8qqaqFr0xc9pk0xbba9q8WqFfea0=yr0RYxir=Jbba9q8aq0=yq=He9q8qqQ8frFve9Fve9Ff0dmeaabaqaciGacaGaaeqabaWaaeaaeaaakeaacaWGMbWaaSbaaSqaaiaad2gaaeqaaOGaai4laiaadAgadaWgaaWcbaGaam4yaaqabaaaaa@3A0C@</m:annotation>
+ </m:semantics>
+</m:math>) </item>
+<item> duration [s] - duration of generated audio </item>
+<item> 
+<m:math>
+ <m:semantics>
+  <m:mrow>
+   <m:msub>
+    <m:mi>w</m:mi>
+    <m:mn>1</m:mn>
+   </m:msub>
+   <m:mo stretchy="false">(</m:mo><m:mi>t</m:mi><m:mo stretchy="false">)</m:mo>
+  </m:mrow>
+ <m:annotation encoding="MathType-MTEF">
+ MathType@MTEF@5@5@+=feaagaart1ev2aqatCvAUfeBSjuyZL2yd9gzLbvyNv2CaerbuLwBLnhiov2DGi1BTfMBaeXatLxBI9gBaerbd9wDYLwzYb1uaebbnrfifHhDYfgasaacH8srps0lbbf9q8WrFfeuY=Hhbbf9v8qqaqFr0xc9pk0xbba9q8WqFfea0=yr0RYxir=Jbba9q8aq0=yq=He9q8qqQ8frFve9Fve9Ff0dmeaabaqaciGacaGaaeqabaWaaeaaeaaakeaacaWG3bWaaSbaaSqaaiaaigdaaeqaaOGaaiikaiaadshacaGGPaaaaa@3986@</m:annotation>
+ </m:semantics>
+</m:math> - prototype waveform for time-varying amplitude </item>
+<item> 
+<m:math>
+ <m:semantics>
+  <m:mrow>
+   <m:msub>
+    <m:mi>w</m:mi>
+    <m:mn>2</m:mn>
+   </m:msub>
+   <m:mo stretchy="false">(</m:mo><m:mi>t</m:mi><m:mo stretchy="false">)</m:mo>
+  </m:mrow>
+ <m:annotation encoding="MathType-MTEF">
+ MathType@MTEF@5@5@+=feaagaart1ev2aqatCvAUfeBSjuyZL2yd9gzLbvyNv2CaerbuLwBLnhiov2DGi1BTfMBaeXatLxBI9gBaerbd9wDYLwzYb1uaebbnrfifHhDYfgasaacH8srps0lbbf9q8WrFfeuY=Hhbbf9v8qqaqFr0xc9pk0xbba9q8WqFfea0=yr0RYxir=Jbba9q8aq0=yq=He9q8qqQ8frFve9Fve9Ff0dmeaabaqaciGacaGaaeqabaWaaeaaeaaakeaacaWG3bWaaSbaaSqaaiaaigdaaeqaaOGaaiikaiaadshacaGGPaaaaa@3986@</m:annotation>
+ </m:semantics>
+</m:math> - prototype waveform for time-varying modulation index </item>
+
+</list>
+
+<para id="par14">
+		The prototype waveforms are normalized in both dimensions, i.e., the range and domain are both zero to one. The prototype waveform 
+<m:math>
+ <m:semantics>
+  <m:mrow>
+   <m:msub>
+    <m:mi>w</m:mi>
+    <m:mn>1</m:mn>
+   </m:msub>
+   <m:mo stretchy="false">(</m:mo><m:mi>t</m:mi><m:mo stretchy="false">)</m:mo>
+  </m:mrow>
+ <m:annotation encoding="MathType-MTEF">
+ MathType@MTEF@5@5@+=feaagaart1ev2aqatCvAUfeBSjuyZL2yd9gzLbvyNv2CaerbuLwBLnhiov2DGi1BTfMBaeXatLxBI9gBaerbd9wDYLwzYb1uaebbnrfifHhDYfgasaacH8srps0lbbf9q8WrFfeuY=Hhbbf9v8qqaqFr0xc9pk0xbba9q8WqFfea0=yr0RYxir=Jbba9q8aq0=yq=He9q8qqQ8frFve9Fve9Ff0dmeaabaqaciGacaGaaeqabaWaaeaaeaaakeaacaWG3bWaaSbaaSqaaiaaigdaaeqaaOGaaiikaiaadshacaGGPaaaaa@3986@</m:annotation>
+ </m:semantics>
+</m:math> is converted to the time-varying amplitude as
+<m:math>
+ <m:semantics>
+  <m:mrow>
+   <m:mi>a</m:mi><m:mo stretchy="false">(</m:mo><m:mi>t</m:mi><m:mo stretchy="false">)</m:mo><m:mo>=</m:mo><m:mi>A</m:mi><m:msub>
+    <m:mi>w</m:mi>
+    <m:mn>1</m:mn>
+   </m:msub>
+   <m:mo stretchy="false">(</m:mo><m:mi>t</m:mi><m:mo stretchy="false">)</m:mo>
+  </m:mrow>
+ <m:annotation encoding="MathType-MTEF">
+ </m:annotation>
+ </m:semantics>
+ </m:math>. The prototype waveform 
+<m:math>
+ <m:semantics>
+  <m:mrow>
+   <m:msub>
+    <m:mi>w</m:mi>
+    <m:mn>2</m:mn>
+   </m:msub>
+   <m:mo stretchy="false">(</m:mo><m:mi>t</m:mi><m:mo stretchy="false">)</m:mo>
+  </m:mrow>
+ <m:annotation encoding="MathType-MTEF">
+ MathType@MTEF@5@5@+=feaagaart1ev2aqatCvAUfeBSjuyZL2yd9gzLbvyNv2CaerbuLwBLnhiov2DGi1BTfMBaeXatLxBI9gBaerbd9wDYLwzYb1uaebbnrfifHhDYfgasaacH8srps0lbbf9q8WrFfeuY=Hhbbf9v8qqaqFr0xc9pk0xbba9q8WqFfea0=yr0RYxir=Jbba9q8aq0=yq=He9q8qqQ8frFve9Fve9Ff0dmeaabaqaciGacaGaaeqabaWaaeaaeaaakeaacaWG3bWaaSbaaSqaaiaaikdaaeqaaOGaaiikaiaadshacaGGPaaaaa@3987@</m:annotation>
+ </m:semantics>
+</m:math> is converted to the time-varying modulation index as
+<m:math>
+ <m:semantics>
+  <m:mrow>
+   <m:mi>i</m:mi><m:mo stretchy="false">(</m:mo><m:mi>t</m:mi><m:mo stretchy="false">)</m:mo><m:mo>=</m:mo><m:mo stretchy="false">(</m:mo><m:msub>
+    <m:mi>I</m:mi>
+    <m:mrow>
+     <m:mtext>max</m:mtext>
+    </m:mrow>
+   </m:msub>
+   <m:mo>−</m:mo><m:msub>
+    <m:mi>I</m:mi>
+    <m:mrow>
+     <m:mtext>min</m:mtext>
+    </m:mrow>
+   </m:msub>
+   <m:mo stretchy="false">)</m:mo><m:msub>
+    <m:mi>w</m:mi>
+    <m:mn>2</m:mn>
+   </m:msub>
+   <m:mo stretchy="false">(</m:mo><m:mi>t</m:mi><m:mo stretchy="false">)</m:mo><m:mo>+</m:mo><m:msub>
+    <m:mi>I</m:mi>
+    <m:mrow>
+     <m:mtext>min</m:mtext>
+    </m:mrow>
+   </m:msub>
+  </m:mrow>
+ <m:annotation encoding="MathType-MTEF">
+ </m:annotation>
+ </m:semantics>
+ </m:math>.
+ 
+ Representative Chowning FM instrument specifications are described in the PDF document <link resource="chowning_instruments.pdf">chowning_instruments.pdf</link>. 
+ The <link target-id="video-chowning"/> screencast video walks through the complete process to implement the Chowning clarinet instrument in LabVIEW. 
+</para>
+
+<para id="par15">
+		<media id="idm364128" alt=""><image src="../../media/LabVIEW.png" mime-type="image/png"/></media> Download the finished VI: <link resource="chowning_clarinet.vi">chowning_clarinet.vi</link>. 
+		Refer to <link document="m15430">TripleDisplay</link> to install the front-panel indicator used to view the signal spectrum.
+</para>
+
+<para id="par16">
+		You can easily adapt the VI to create the remaining Chowning instruments once you understand the general implementation procedure.
+</para>
+
+<figure id="video-chowning"><title><link url="https://youtu.be/tFJ1QT80eIw" window="new">https://youtu.be/tFJ1QT80eIw</link> (17:22)</title><media id="eip-idm241499248" display="block" alt="Insert alt text here"><video mime-type="video/mpeg" src="https://www.youtube.com/embed/tFJ1QT80eIw?rel=0" autoplay="false" width="640" height="460"/></media>
+
+
+<caption>[video] Implement a Chowning FM instrument in LabVIEW
+</caption></figure></section>
+
+</content>
+</document>

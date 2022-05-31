@@ -1,0 +1,297 @@
+<document xmlns="http://cnx.rice.edu/cnxml" xmlns:m="http://www.w3.org/1998/Math/MathML">
+  <title>Amplitude Modulation (AM) Mathematics</title>
+  <metadata xmlns:md="http://cnx.rice.edu/mdml">
+  <md:content-id>m15447</md:content-id>
+  <md:title>Amplitude Modulation (AM) Mathematics</md:title>
+  <md:abstract>Amplitude modulation (AM) creates interesting special effects when applied to music and speech signals. The mathematics of the modulation property of the Fourier transform are presented as the basis for understanding the AM effect, and several audio demonstrations illustrate the AM effect when applied to simple signals (sinusoids) and speech signals. The audio demonstration is implemented by a LabVIEW VI using an event structure as the basis for real-time interactive parameter control.</md:abstract>
+  <md:uuid>ed57009e-0e41-405e-ab5b-52c9f27dfbc5</md:uuid>
+</metadata>
+
+<content>
+
+<table id="labview_banner" frame="none" summary=""><tgroup cols="2">
+<colspec rowsep="0" colsep="0"/> <colspec colwidth="6in" rowsep="0" colsep="0"/>
+<tbody>
+  <row>
+    <entry morerows="3"><media id="idm652048" alt=""><image src="../../media/LabVIEWq.png" mime-type="image/png"/></media></entry>
+    <entry> This module refers to LabVIEW, a software development environment that features a graphical programming language.
+       Please see the <link document="m15428">LabVIEW QuickStart Guide</link> module for tutorials and documentation that will help you:</entry>
+  </row>
+  <row> <entry>• Apply LabVIEW to Audio Signal Processing </entry> </row>
+  <row> <entry>• Get started with LabVIEW</entry> </row>
+  <row> <entry>• Obtain a fully-functional evaluation edition of LabVIEW</entry> </row>
+</tbody>
+</tgroup>
+</table>
+
+
+<section id="sec1">
+<title>Overview</title>
+
+<para id="par2">
+		<term>Amplitude modulation</term> (<term>AM</term>) is normally associated with communications systems;
+		for example, you can find all sorts of "talk radio" stations on the AM band. In communication
+		systems, the <term>baseband</term> signal has a bandwidth similar to that of speech or music (anywhere
+		from 8 kHz to 20 kHz), and the modulating frequency is several orders of magnitude higher; the AM radio
+		band is 540 kHz to 1600 kHz.</para>
+
+<para id="par3">		When applied to audio signals for music synthesis purposes, the modulating frequency is of the same
+		order as the audio signals to be modulated. As described below, AM (also known as <term>ring modulation</term>) splits a given signal spectrum in two, and shifts one version to a higher frequency and the other version to a lower
+		frequency. The modulated signal is the sum of the frequency-shifted spectra, and can provide interesting
+		special effects when applied to speech and music signals.
+</para>
+
+</section>
+
+<section id="sec4">
+<title>Modulation Property of the Fourier Transform</title>
+
+<para id="par5">
+		The <term>modulation property</term> of the Fourier transform forms the basis of understanding
+		how AM modifies the spectrum of a source signal. The screencast video of <link target-id="video-modulation-property"/> explains the modulation property concept and derives the equation for the modulation property.
+</para>
+
+<figure id="video-modulation-property"><title><link url="https://youtu.be/ouajJJOn9Hg" window="new">https://youtu.be/ouajJJOn9Hg</link> (4:38)</title><media id="eip-idm410888656" display="block" alt="Insert alt text here"><video mime-type="video/mpeg" src="https://www.youtube.com/embed/ouajJJOn9Hg?rel=0" autoplay="false" width="640" height="460"/></media>
+
+
+<caption>[video] Modulation property concepts and derivation
+</caption></figure><para id="par7">
+Suppose the source signal to be modulated contains only one spectral component, i.e., the source is a sinusoid.
+The screencast video of <link target-id="video-modulation-pitched"/> shows how to apply the modulation
+property to predict the spectrum of the modulated signal. Once you have studied the video, try the exercises below
+to ensure that you understand how to apply the property for a variety of different modulating frequencies.
+</para>
+
+<figure id="video-modulation-pitched"><title><link url="https://youtu.be/afHa5RZJ_X8" window="new">https://youtu.be/afHa5RZJ_X8</link> (2:31)</title><media id="eip-idm385768992" display="block" alt="Insert alt text here"><video mime-type="video/mpeg" src="https://www.youtube.com/embed/afHa5RZJ_X8?rel=0" autoplay="false" width="640" height="460"/></media>
+
+
+<caption>[video] Determine the spectrum of a modulated sinusoid
+</caption></figure><para id="par9">
+The time-domain signal
+<m:math>
+ <m:semantics>
+  <m:mrow>
+   <m:mi>x</m:mi><m:mo stretchy="false">(</m:mo><m:mi>t</m:mi><m:mo stretchy="false">)</m:mo>
+  </m:mrow>
+ <m:annotation encoding="MathType-MTEF">
+ </m:annotation>
+ </m:semantics>
+</m:math>
+ is a sinusoid of amplitude
+<m:math>
+ <m:semantics>
+  <m:mrow>
+   <m:mn>2</m:mn><m:mi>A</m:mi>
+  </m:mrow>
+ <m:annotation encoding="MathType-MTEF">
+ </m:annotation>
+ </m:semantics>
+</m:math>
+ with corresponding frequency-domain spectrum as shown in <link target-id="img-spectrum_x"/>.
+</para>
+
+<figure id="img-spectrum_x">
+<media id="idp1879712" alt=""><image src="../../media/mod_am-math-spectrum_x.png" mime-type="image/png"/></media>
+<caption>
+   Spectrum of the signal x(t)
+</caption>
+</figure>
+
+<para id="par11">
+Suppose
+<m:math>
+ <m:semantics>
+  <m:mrow>
+   <m:mi>x</m:mi><m:mo stretchy="false">(</m:mo><m:mi>t</m:mi><m:mo stretchy="false">)</m:mo>
+  </m:mrow>
+ <m:annotation encoding="MathType-MTEF">
+ </m:annotation>
+ </m:semantics>
+</m:math>
+ is modulated by a sinusoid of frequency
+<m:math>
+ <m:semantics>
+  <m:mrow>
+   <m:msub>
+    <m:mi>f</m:mi>
+    <m:mi>m</m:mi>
+   </m:msub>
+  </m:mrow>
+ <m:annotation encoding="MathType-MTEF">
+ </m:annotation>
+ </m:semantics>
+</m:math>
+. For each of the exercises below, draw the spectrum of the modulated signal
+<m:math>
+ <m:semantics>
+  <m:mrow>
+   <m:mi>y</m:mi><m:mo stretchy="false">(</m:mo><m:mi>t</m:mi><m:mo stretchy="false">)</m:mo><m:mo>=</m:mo><m:mi>cos</m:mi><m:mo>⁡</m:mo><m:mo stretchy="false">(</m:mo><m:mn>2</m:mn><m:mi>π</m:mi><m:msub>
+    <m:mi>f</m:mi>
+    <m:mn>m</m:mn>
+   </m:msub>
+   <m:mi>t</m:mi><m:mo stretchy="false">)</m:mo><m:mo>×</m:mo><m:mi>x</m:mi><m:mo stretchy="false">(</m:mo><m:mi>t</m:mi><m:mo stretchy="false">)</m:mo>
+  </m:mrow>
+ <m:annotation encoding="MathType-MTEF">
+ </m:annotation>
+ </m:semantics>
+</m:math>, where the exercise problem statement indicates the modulation frequency.
+</para>
+
+<exercise id="exer12">
+<problem id="idp1040640">
+<para id="par13">fm = f0/5</para>
+</problem>
+<solution id="idm1736112">
+<para id="par14"> <media id="idm359472" alt=""><image src="../../media/soln-f0d5.png" mime-type="image/png"/></media>
+	</para>
+</solution>
+</exercise>
+<exercise id="exer15">
+<problem id="idm966272">
+<para id="par16">fm = f0/2</para>
+</problem>
+<solution id="idm508272">
+<para id="par17"> <media id="idm2321920" alt=""><image src="../../media/soln-f0d2.png" mime-type="image/png"/></media>
+	</para>
+</solution>
+</exercise>
+<exercise id="exer18">
+<problem id="idp1144720">
+<para id="par19">fm = f0</para>
+</problem>
+<solution id="idp4009168">
+<para id="par20"> <media id="idp441584" alt=""><image src="../../media/soln-f0.png" mime-type="image/png"/></media>
+	</para>
+</solution>
+</exercise>
+<exercise id="exer21">
+<problem id="idp3333088">
+<para id="par22">fm = 1.5f0</para>
+</problem>
+<solution id="idm10148288">
+<para id="par23"> <media id="idp7095248" alt=""><image src="../../media/soln-1.5f0.png" mime-type="image/png"/></media>
+	</para>
+</solution>
+</exercise>
+<exercise id="exer24">
+<problem id="idp1711520">
+<para id="par25">fm = 2f0</para>
+</problem>
+<solution id="idp88288">
+<para id="par26"> <media id="idp3238208" alt=""><image src="../../media/soln-2f0.png" mime-type="image/png"/></media>
+	</para>
+</solution>
+</exercise>
+<para id="par27">
+		Did you notice something interesting when
+<m:math>
+ <m:semantics>
+  <m:mrow>
+   <m:msub>
+    <m:mi>f</m:mi>
+    <m:mi>m</m:mi>
+   </m:msub>
+  </m:mrow>
+ <m:annotation encoding="MathType-MTEF">
+ </m:annotation>
+ </m:semantics>
+</m:math> becomes larger than
+<m:math>
+ <m:semantics>
+  <m:mrow>
+   <m:msub>
+    <m:mi>f</m:mi>
+    <m:mi>0</m:mi>
+   </m:msub>
+  </m:mrow>
+ <m:annotation encoding="MathType-MTEF">
+ </m:annotation>
+ </m:semantics>
+</m:math>? The right-most negative frequency component shifts into the positive half of the spectrum, 
+and the left-most positive frequency component shifts into the negative half of the spectrum. This effect is
+similar to the idea of <term>aliasing</term>, in which a sinusoid whose frequency exceeds half the sampling
+frequency is said to be "folded back" into the principal alias. In the case of AM, modulating a
+sinusoid by a frequency greater than its own frequency folds the left-most component back into positive frequency.
+</para>
+
+</section>
+
+<section id="sec28">
+<title>Audio Demonstrations</title>
+
+<para id="par29">
+		The screencast video of <link target-id="video-demo1"/> demonstrates the aural effects of 
+		modulating a single spectral component, i.e., a sinusoid.
+		
+		The LabVIEW code for the demo is
+		also described in detail, especially the use of an <term>event structure</term> contained in a 
+		<term>while-loop structure</term> (see video in <link target-id="video-demo1-explained"/>). 
+		The event structure provides an efficient way to run an algorithm
+		with real-time interactive parameter control without polling the front panel controls. The event
+		structure provides an alternative to the polled method described in 
+		<link document="m14772">Real-Time Audio Output in LabVIEW</link>.
+</para>
+
+<para id="par30">
+		<media id="idp3766768" alt=""><image src="../../media/LabVIEW.png" mime-type="image/png"/></media> The LabVIEW VI demonstrated within the video is 
+		available here: <link resource="am_demo1.vi">am_demo1.vi</link>.
+		Refer to <link document="m15430">TripleDisplay</link> to install the 
+		front-panel indicator used to view the signal spectrum.
+</para>
+
+<figure id="video-demo1"><title><link url="https://youtu.be/vQ7sh1u5oYo" window="new">https://youtu.be/vQ7sh1u5oYo</link> (4:24)</title><media id="eip-idm449013856" display="block" alt="Insert alt text here"><video mime-type="video/mpeg" src="https://www.youtube.com/embed/vQ7sh1u5oYo?rel=0" autoplay="false" width="640" height="460"/></media>
+
+
+<caption>[video] Modulating a single sinusoid
+</caption></figure><figure id="video-demo1-explained"><title><link url="https://youtu.be/G1UbdOsldR4" window="new">https://youtu.be/G1UbdOsldR4</link> (6:39)</title><media id="eip-idm227144368" display="block" alt="Insert alt text here"><video mime-type="video/mpeg" src="https://www.youtube.com/embed/G1UbdOsldR4?rel=0" autoplay="false" width="640" height="460"/></media>
+
+
+<caption>[video] LabVIEW implementation of AM demo using <term>event structure</term>
+</caption></figure><para id="par33">
+		The next screencast video (see <link target-id="video-demo2"/>) demonstrates the aural effects of 
+		modulating two spectral components created by summing together a sinusoid at frequency f0 and another 
+		sinusoid at frequency 2f0. You can obtain interesting effects depending on whether the spectral 
+		components end up in a harmonic relationship; if so, the components fuse together and you perceive a single 
+		pitch.  If not, you perceive two distinct pitches.
+</para>
+
+<para id="par34">
+		<media id="idm9616336" alt=""><image src="../../media/LabVIEW.png" mime-type="image/png"/></media> The LabVIEW VI demonstrated within the video is 
+		available here: <link resource="am_demo2.vi">am_demo2.vi</link>. 
+		Refer to <link document="m15430">TripleDisplay</link> to install the 
+		front-panel indicator used to view the signal spectrum.
+</para>
+
+<figure id="video-demo2"><title><link url="https://youtu.be/wuzEHT8zhBw" window="new">https://youtu.be/wuzEHT8zhBw</link> (4:18)</title><media id="eip-idm401549344" display="block" alt="Insert alt text here"><video mime-type="video/mpeg" src="https://www.youtube.com/embed/wuzEHT8zhBw?rel=0" autoplay="false" width="640" height="460"/></media>
+
+
+<caption>[video] Modulating a pair of sinusoids
+</caption></figure><para id="par36">
+		The third demonstration (see <link target-id="video-demo3"/>) illustrates the effect of
+		modulating a music clip and a speech signal. You can obtain Interesting special effects 
+		because the original source spectrum simultaneously shifts to a higher and lower
+		frequency.
+</para>
+
+<para id="par37">
+		<media id="idp1209472" alt=""><image src="../../media/LabVIEW.png" mime-type="image/png"/></media> The LabVIEW VI demonstrated within the video is 
+		available here: <link resource="am_demo3.vi">am_demo3.vi</link>. 
+		Refer to <link document="m15430">TripleDisplay</link> to install the
+		front-panel indicator used to view the signal spectrum.
+</para>
+
+<para id="par38">
+		The two audio clips used in the example are available here: <link resource="flute.wav">flute.wav</link>
+		and <link resource="speech.wav">speech.wav</link> (speech clip courtesy of the Open Speech Repository,
+		<link url="http://www.voiptroubleshooter.com/open_speech">www.voiptroubleshooter.com/open_speech</link>; the sentences are two of the many phonetically-balanced <term>Harvard Sentences</term>, an important standard
+	       for the speech processing community).
+</para>
+
+<figure id="video-demo3"><title><link url="https://youtu.be/ytEYQz0XR5A" window="new">https://youtu.be/ytEYQz0XR5A</link> (7:41)</title><media id="eip-idm489838992" display="block" alt="Insert alt text here"><video mime-type="video/mpeg" src="https://www.youtube.com/embed/ytEYQz0XR5A?rel=0" autoplay="false" width="640" height="460"/></media>
+
+
+<caption>[video] Modulating a music clip and a speech signal
+</caption></figure></section>
+
+</content>
+</document>

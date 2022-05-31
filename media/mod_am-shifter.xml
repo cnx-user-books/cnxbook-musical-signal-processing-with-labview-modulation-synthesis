@@ -1,0 +1,78 @@
+<!--title = Pitch Shifter with Single-Sideband AM
+-->
+
+<?xml version='1.0' standalone='yes' ?>
+<LVData>
+<Version>8.2</Version>
+
+<!-------------------------------------------------------->
+<String> <Name>sec</Name> <Val>Overview</Val> </String>
+
+<String> <Name>para</Name> <Val>
+{term}Amplitude modulation{/term} ({term}AM{/term}) of a source signal divides the signal's spectrum into two copies, with
+one copy shifted towards higher frequency and the other copy shifted 
+towards lower frequency; refer to {cnxn document=&quot;m????&quot;}AM Mathematics{/cnxn} for a complete
+treatment of basic AM. The shifted and dual spectrum makes an interesting special effect when applied
+to a musical instrument or the human voice, creating the sensation of two different people speaking the
+identical phrase, for example.
+
+If one of these spectral images could somehow be cancelled out, AM seems to be a feasible
+way to implement a {term}pitch shifter{/term}, a device or algorithm that will shift the source spectrum higher or
+lower in frequency. When this special effect is applied in real-time, you can speak into a microphone and sound
+just like one of &quot;Alvin and the Chipmunks.&quot; Click {link src=&quot;pitch-shift-demo.wav&quot;}pitch-shift-demo.wav{/link} to
+listen to an example of what you will be able to accomplish after completing this module.
+</Val> </String>
+
+
+<String> <Name>secend</Name> <Val></Val> </String>
+
+<!-------------------------------------------------------->
+<String> <Name>sec</Name> <Val>Single-Sideband AM (SSB-AM)</Val> </String>
+
+<String> <Name>para</Name> <Val>
+The screencast video of {cnxn target=&quot;video-ssbshifter&quot;/} develops the basic theory of 
+{term}single-sideband modulation{/term} ({term}SSB{/term}), a technique borrowed from communications systems that provides a way to
+apply amplitude modulation with spectral image cancellation. 
+</Val> </String>
+
+<Cluster> <Name>video</Name> <NumElts>4</NumElts>
+<String> <Name>ID (optional)</Name> <Val>video-ssbtheory</Val> </String>
+<String> <Name>video name</Name> <Val>theory</Val> </String>
+<String> <Name>webpage title</Name> <Val>SSB-based pitch shifting</Val> </String>
+<String> <Name>caption</Name><Val>Single-sideband modulation for pitch shifting</Val> </String>
+</Cluster>
+
+<String> <Name>para</Name> <Val>
+As an exercise to ensure that you followed each step, draw a block diagram or flow diagram to show how the original signal
+is modified to produce the final shifted signal. Your diagram should include directed lines (arrows) to show signal flow,
+and should use symbols (blocks) for the multipliers, cosine and sine oscillators, Hilbert shifter, sign changer, and adder.
+</Val> </String>
+
+<String> <Name>secend</Name> <Val></Val> </String>
+
+<!-------------------------------------------------------->
+<String> <Name>sec</Name> <Val>Pre-Filtering to Avoid Aliasing</Val> </String>
+
+<String> <Name>para</Name> <Val>
+{term}Pre-filtering{/term} the source signal to ensure
+the shifted spectrum does not cause aliasing is also discussed, since the source signal typically fills the 
+available bandwidth.
+</Val> </String>
+
+<Cluster> <Name>video</Name> <NumElts>4</NumElts>
+<String> <Name>ID (optional)</Name> <Val>video-prefilter</Val> </String>
+<String> <Name>video name</Name> <Val>prefilter</Val> </String>
+<String> <Name>webpage title</Name> <Val>Pre-filtering</Val> </String>
+<String> <Name>caption</Name><Val>Pre-filtering to avoid aliasing</Val> </String>
+</Cluster>
+
+<String> <Name>para</Name> <Val>
+As an exercise to confirm your understanding of the material, develop a formula to calculated the filter...
+</Val> </String>
+
+
+
+<String> <Name>secend</Name> <Val></Val> </String>
+<!-------------------------------------------------------->
+
+</LVData>

@@ -1,0 +1,280 @@
+<!--title = Amplitude Moduation (AM) Mathematics
+-->
+
+<?xml version='1.0' standalone='yes' ?>
+<LVData>
+<Version>8.2</Version>
+
+<!-------------------------------------------------------->
+<String> <Name>sec</Name> <Val>Overview</Val> </String>
+
+<String> <Name>para</Name> <Val>
+		{term}Amplitude modulation{/term} ({term}AM{/term}) is normally associated with communications systems;
+		for example, you can find all sorts of &quot;talk radio&quot; stations on the AM band. In communication
+		systems the {term}baseband{/term} signal has a bandwidth similar to that of speech or music (anywhere
+		from 8 kHz to 20 kHz), and the modulating frequency is several orders of magnitude higher; the AM radio
+		band is 540 to 1600 kHz.
+
+		When applied to audio signals for music synthesis purposes, the modulating frequency is of the same
+		order as the audio signals to be modulated. As described below, AM (also known as {term}ring modulation{/term}) splits a given signal spectrum in two, and shifts one version to a higher frequency and the other version to a lower
+		frequency. The modulated signal is the sum of the frequency-shifted spectra, and can provide interesting
+		special effects when applied to speech and music signals.
+</Val> </String>
+
+<String> <Name>secend</Name> <Val></Val> </String>
+
+
+<!-------------------------------------------------------->
+<String> <Name>sec</Name> <Val>Modulation Property of the Fourier Transform</Val> </String>
+
+<String> <Name>para</Name> <Val>
+		The {term}modulation property{/term} of the Fourier transform forms the basis of understanding
+		how AM modifies the spectrum of a source signal. The screencast video of {cnxn target=&quot;video-modulation-property&quot;/} explains the modulation property concept and derives the equation for the modulation property.
+</Val> </String>
+
+<Cluster> <Name>video</Name> <NumElts>4</NumElts>
+<String> <Name>ID (optional)</Name> <Val>video-modulation-property</Val> </String>
+<String> <Name>video name</Name> <Val>modulation-property</Val> </String>
+<String> <Name>webpage title</Name> <Val>Modulation property</Val> </String>
+<String> <Name>caption</Name> <Val>Modulation property concepts and derivation</Val> </String>
+</Cluster>
+
+<String> <Name>para</Name> <Val>
+Suppose the source signal to be modulated contains only one spectral component, i.e., the source is a sinusoid.
+The screencast video of {cnxn target=&quot;video-modulation-pitched&quot;/} shows how to apply the modulation
+property to predict the spectrum of the modulated signal. Once you have studied the video, try the exercises below
+to ensure that you understand how to apply the property for a variety of different modulating frequencies.
+</Val> </String>
+
+<Cluster> <Name>video</Name> <NumElts>4</NumElts>
+<String> <Name>ID (optional)</Name> <Val>video-modulation-pitched</Val> </String>
+<String> <Name>video name</Name> <Val>modulation-pitched</Val> </String>
+<String> <Name>webpage title</Name> <Val>Modulated sinusoid</Val> </String>
+<String> <Name>caption</Name> <Val>Determine the spectrum of a modulated sinusoid</Val> </String>
+</Cluster>
+
+
+<String> <Name>para</Name> <Val>
+The time-domain signal
+<!-- x(t) -->
+{m:math}
+ {m:semantics}
+  {m:mrow}
+   {m:mi}x{/m:mi}{m:mo stretchy=&apos;false&apos;}({/m:mo}{m:mi}t{/m:mi}{m:mo stretchy=&apos;false&apos;}){/m:mo}
+  {/m:mrow}
+ {m:annotation encoding=&apos;MathType-MTEF&apos;}
+ {/m:annotation}
+ {/m:semantics}
+{/m:math}
+ is a sinusoid of amplitude
+<!-- 2A -->
+{m:math}
+ {m:semantics}
+  {m:mrow}
+   {m:mn}2{/m:mn}{m:mi}A{/m:mi}
+  {/m:mrow}
+ {m:annotation encoding=&apos;MathType-MTEF&apos;}
+ {/m:annotation}
+ {/m:semantics}
+{/m:math}
+ with corresponding frequency-domain spectrum as shown in {cnxn target=&quot;img-spectrum_x&quot;/}.
+</Val> </String>
+
+<Cluster> <Name>image</Name> <NumElts>3</NumElts>
+<String> <Name>ID (optional)</Name> <Val>img-spectrum_x</Val> </String>
+<String> <Name>name</Name> <Val>spectrum_x</Val> </String>
+<String> <Name>caption</Name> <Val>Spectrum of the signal x(t)</Val> </String>
+</Cluster>
+
+<String> <Name>para</Name> <Val>
+Suppose
+<!-- x(t) -->
+{m:math}
+ {m:semantics}
+  {m:mrow}
+   {m:mi}x{/m:mi}{m:mo stretchy=&apos;false&apos;}({/m:mo}{m:mi}t{/m:mi}{m:mo stretchy=&apos;false&apos;}){/m:mo}
+  {/m:mrow}
+ {m:annotation encoding=&apos;MathType-MTEF&apos;}
+ {/m:annotation}
+ {/m:semantics}
+{/m:math}
+ is modulated by a sinusoid of frequency
+<!-- f_m -->
+{m:math}
+ {m:semantics}
+  {m:mrow}
+   {m:msub}
+    {m:mi}f{/m:mi}
+    {m:mi}m{/m:mi}
+   {/m:msub}
+  {/m:mrow}
+ {m:annotation encoding=&apos;MathType-MTEF&apos;}
+ {/m:annotation}
+ {/m:semantics}
+{/m:math}
+. For each of the exercises below, draw the spectrum of the modulated signal
+<!-- y(t)=cos(2pif0t)x(t) -->
+{m:math}
+ {m:semantics}
+  {m:mrow}
+   {m:mi}y{/m:mi}{m:mo stretchy=&apos;false&apos;}({/m:mo}{m:mi}t{/m:mi}{m:mo stretchy=&apos;false&apos;}){/m:mo}{m:mo}={/m:mo}{m:mi}cos{/m:mi}{m:mo}&amp;#x2061;{/m:mo}{m:mo stretchy=&apos;false&apos;}({/m:mo}{m:mn}2{/m:mn}{m:mi}&amp;#x03C0;{/m:mi}{m:msub}
+    {m:mi}f{/m:mi}
+    {m:mn}m{/m:mn}
+   {/m:msub}
+   {m:mi}t{/m:mi}{m:mo stretchy=&apos;false&apos;}){/m:mo}{m:mo}&amp;#x00D7;{/m:mo}{m:mi}x{/m:mi}{m:mo stretchy=&apos;false&apos;}({/m:mo}{m:mi}t{/m:mi}{m:mo stretchy=&apos;false&apos;}){/m:mo}
+  {/m:mrow}
+ {m:annotation encoding=&apos;MathType-MTEF&apos;}
+ {/m:annotation}
+ {/m:semantics}
+{/m:math}, where the exercise problem statement indicates the modulation frequency.
+</Val> </String>
+
+<Cluster> <Name>exercise</Name> <NumElts>2</NumElts>
+	<String> <Name>problem text</Name> <Val>fm = f0/5</Val> </String>
+	<String> <Name>solution text</Name> <Val> {media type=&quot;image/png&quot; src=&quot;soln-f0d5.png&quot;> {/media}
+	</Val> </String>
+</Cluster>
+
+<Cluster> <Name>exercise</Name> <NumElts>2</NumElts>
+	<String> <Name>problem text</Name> <Val>fm = f0/2</Val> </String>
+	<String> <Name>solution text</Name> <Val> {media type=&quot;image/png&quot; src=&quot;soln-f0d2.png&quot;> {/media}
+	</Val> </String>
+</Cluster>
+
+<Cluster> <Name>exercise</Name> <NumElts>2</NumElts>
+	<String> <Name>problem text</Name> <Val>fm = f0</Val> </String>
+	<String> <Name>solution text</Name> <Val> {media type=&quot;image/png&quot; src=&quot;soln-f0.png&quot;> {/media}
+	</Val> </String>
+</Cluster>
+
+<Cluster> <Name>exercise</Name> <NumElts>2</NumElts>
+	<String> <Name>problem text</Name> <Val>fm = 1.5f0</Val> </String>
+	<String> <Name>solution text</Name> <Val> {media type=&quot;image/png&quot; src=&quot;soln-1.5f0.png&quot;> {/media}
+	</Val> </String>
+</Cluster>
+
+<Cluster> <Name>exercise</Name> <NumElts>2</NumElts>
+	<String> <Name>problem text</Name> <Val>fm = 2f0</Val> </String>
+	<String> <Name>solution text</Name> <Val> {media type=&quot;image/png&quot; src=&quot;soln-2f0.png&quot;> {/media}
+	</Val> </String>
+</Cluster>
+
+<String> <Name>para</Name> <Val>
+		Did you notice something interesting when
+<!-- f_m -->
+{m:math}
+ {m:semantics}
+  {m:mrow}
+   {m:msub}
+    {m:mi}f{/m:mi}
+    {m:mi}m{/m:mi}
+   {/m:msub}
+  {/m:mrow}
+ {m:annotation encoding=&apos;MathType-MTEF&apos;}
+ {/m:annotation}
+ {/m:semantics}
+{/m:math} becomes larger than
+<!-- f_0 -->
+{m:math}
+ {m:semantics}
+  {m:mrow}
+   {m:msub}
+    {m:mi}f{/m:mi}
+    {m:mi}0{/m:mi}
+   {/m:msub}
+  {/m:mrow}
+ {m:annotation encoding=&apos;MathType-MTEF&apos;}
+ {/m:annotation}
+ {/m:semantics}
+{/m:math}? The right-most negative frequency component shifts into the positive half of the spectrum, 
+and the left-most positive frequency component shifts into the negative half of the spectrum. This effect is
+similar to the idea of {term}aliasing{/term}, in which a sinusoid whose frequency exceeds half the sampling
+frequency is said to be &quot;folded back&quot; into the principle alias. In the case of AM, modulating a
+sinusoid by a frequency greater than its own frequency folds the left-most component back into positive frequency.
+</Val> </String>
+
+<String> <Name>secend</Name> <Val></Val> </String>
+
+
+<!-------------------------------------------------------->
+<String> <Name>sec</Name> <Val>Audio Demonstrations</Val> </String>
+
+<String> <Name>para</Name> <Val>
+		The screencast video of {cnxn target=&quot;video-demo1&quot;/} demonstrates the aural effects of 
+		modulating a single spectral component, i.e., a sinusoid.
+		
+		The LabVIEW code for the demo is
+		also described in detail, especially the use of an {term}event structure{/term} contained in a 
+		{term}while-loop structure{/term} (see video in {cnxn target=&quot;video-demo1-explained&quot;/}). 
+		The event structure provides an efficient way to run an algorithm
+		with real-time interactive parameter control without polling the front panel controls. The event
+		structure provides an alternative to the polled method described in 
+		{cnxn document=&quot;m14772&quot;}Real-Time Audio Output in LabVIEW{/cnxn}.
+	
+		The code for the LabVIEW VI demonstrated within the video is 
+		available here: {link src=&quot;am_demo1.vi&quot;}am_demo1.vi{/link}; 
+		refer to {cnxn document=&quot;m????&quot;}TripleDisplay.vi{/cnxn} to install the &quot;TripleDisplay&quot;
+		indicator used to view the signal spectrum.
+</Val> </String>
+
+<Cluster> <Name>video</Name> <NumElts>4</NumElts>
+<String> <Name>ID (optional)</Name> <Val>video-demo1</Val> </String>
+<String> <Name>video name</Name> <Val>demo1</Val> </String>
+<String> <Name>webpage title</Name> <Val>AM Demo #1</Val> </String>
+<String> <Name>caption</Name> <Val>Modulating a single sinusoid</Val> </String>
+</Cluster>
+
+<Cluster> <Name>video</Name> <NumElts>4</NumElts>
+<String> <Name>ID (optional)</Name> <Val>video-demo1-explained</Val> </String>
+<String> <Name>video name</Name> <Val>demo1-dgm</Val> </String>
+<String> <Name>webpage title</Name> <Val>AM Demo #1 diagram</Val> </String>
+<String> <Name>caption</Name> <Val>LabVIEW implementation of AM demo using {term}event structure{/term}</Val> </String>
+</Cluster>
+
+<String> <Name>para</Name> <Val>
+		The next screencast video (see {cnxn target=&quot;video-demo2&quot;/}) demonstrates the aural effects of 
+		modulating two spectral components created by summing together a sinusoid at frequency f0 and another 
+		sinusoid at frequency 2f0. Interesting effects can be obtained depending on whether or not the spectral 
+		components end up in a harmonic relationship; if so, the components fuse together and we perceive a single 
+		pitch.  If not, we perceive two distinct pitches.
+		
+		The code for the LabVIEW VI demonstrated within the video is 
+		available here: {link src=&quot;am_demo2.vi&quot;}am_demo2.vi{/link}. 
+</Val> </String>
+
+<Cluster> <Name>video</Name> <NumElts>4</NumElts>
+<String> <Name>ID (optional)</Name> <Val>video-demo2</Val> </String>
+<String> <Name>video name</Name> <Val>demo2</Val> </String>
+<String> <Name>webpage title</Name> <Val>AM Demo #2</Val> </String>
+<String> <Name>caption</Name> <Val>Modulating a pair of sinusoids</Val> </String>
+</Cluster>
+
+<String> <Name>para</Name> <Val>
+		The third demonstration (see {cnxn target=&quot;video-demo3&quot;/}) illustrates the effect of
+		modulating a music clip and a speech signal. Interesting special effects can be 
+		obtained since the original source spectrum is simultaneously shifted to a higher and lower
+		frequency.
+		
+		The code for the LabVIEW VI demonstrated within the video is 
+		available here: {link src=&quot;am_demo3.vi&quot;}am_demo3.vi{/link}. 
+
+		The two audio clips used in the example are available here: {link src=&quot;flute.wav&quot;}flute.wav{/link}
+		and {link src=&quot;speech.wav&quot;}speech.wav{/link} (speech clip courtesy of the Open Speech Repository,
+		{link src=&quot;http://www.voiptroubleshooter.com/open_speech&quot;}www.voiptroubleshooter.com/open_speech{/link}; the sentences are two of the many phonetically-balanced {term}Harvard Sentences{/term}, an important standard
+	       for the speech processing community).
+</Val> </String>
+
+<Cluster> <Name>video</Name> <NumElts>4</NumElts>
+<String> <Name>ID (optional)</Name> <Val>video-demo3</Val> </String>
+<String> <Name>video name</Name> <Val>demo3</Val> </String>
+<String> <Name>webpage title</Name> <Val>AM Demo #3</Val> </String>
+<String> <Name>caption</Name> <Val>Modulating a music clip and a speech signal</Val> </String>
+</Cluster>
+
+
+
+
+<String> <Name>secend</Name> <Val></Val> </String>
+<!-------------------------------------------------------->
+
+</LVData>

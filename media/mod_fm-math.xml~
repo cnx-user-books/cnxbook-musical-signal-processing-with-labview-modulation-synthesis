@@ -1,0 +1,475 @@
+<!--title = Frequency Modulation (FM) Mathematics
+-->
+
+<?xml version='1.0' standalone='yes' ?>
+<LVData>
+<Version>8.2</Version>
+
+<!-------------------------------------------------------->
+<String> <Name>sec</Name> <Val>Overview</Val> </String>
+
+<String> <Name>para</Name> <Val>
+		{term}Frequency modulation{/term} ({term}FM{/term}) is most often associated with communications systems;
+		for example, you can find all sorts of music stations on the FM band of your radio. In communication
+		systems the {term}baseband{/term} signal has a bandwidth similar to that of speech or music (anywhere
+		from 8 kHz to 20 kHz), and the modulating frequency is several orders of magnitude higher; the FM radio
+		band is 87.5 to 108 MHz.
+
+		When applied to audio signals for music synthesis purposes, the modulating frequency is of the same
+		order as the audio signals to be modulated. FM can create very rich spectra, and
+		the spectra can easily be made to evolve with time. The ability of FM to produce a wide variety of
+		interesting spectra from only two sinusoidal oscillators makes FM a fascinating synthesis technique.
+</Val> </String>
+
+<String> <Name>secend</Name> <Val></Val> </String>
+
+
+<!-------------------------------------------------------->
+<String> <Name>sec</Name> <Val>Brief History of FM Synthesis</Val> </String>
+
+<String> <Name>para</Name> <Val>
+		John Chowning was the first to systematically evaluate FM in the audio spectrum, and along with
+		Stanford University filed for a patent on the technique in 1975 (see U.S. Patent 4,018,121 at {link src=&quot;http://www.uspto.gov&quot;}U.S. Patent and Trademark Office{/link} or at {link src=&quot;http://www.google.com/patents?vid=USPAT4018121&quot;}Google Patent Search{/link}). The patent was issued in 1977, and Stanford University licensed the 
+		technology to Yamaha Corporation. Six years later in 1983 Yamaha introduced the revolutionary DX7 synthesizer ({cnxn target=&quot;img-DX7&quot;/}), 
+		the first commercially-successful instrument based on FM synthesis. The DX7 was also a milestone by introducing two other new technologies: digital 
+		synthesis and MIDI (Musical Instrument Digital Interface). The "FM sound" defines much of the pop music
+		styles of the 1980s.
+</Val> </String>
+
+<Cluster> <Name>imagethumb</Name> <NumElts>4</NumElts>
+<String> <Name>ID (optional)</Name> <Val>img-DX7</Val> </String>
+<String> <Name>image filename</Name> <Val>51653026_5d7e9ba315_o.jpg</Val> </String>
+<String> <Name>thumbnail filename</Name> <Val>51653026_5d7e9ba315_m.jpg</Val> </String>
+<String> <Name>caption</Name> <Val>Yamaha DX7 synthesizer, the first commercially-successful instrument to offer FM synthesis, digital synthesis, and MIDI compatability.
+The instrument pictured here is packaged in a road case.
+Photographer: schoschie ({link src="http://www.flickr.com/photos/schoschie/51653026/"}http://www.flickr.com/photos/schoschie/51653026/{/link}). 
+Copyright holder has granted permission to display this image under the 
+{link src="http://creativecommons.org/licenses/by-sa/2.0/deed.en-us"}Creative Commons Attribution-ShareAlike license{/link}.
+</Val> </String>
+</Cluster>
+
+
+<String> <Name>secend</Name> <Val></Val> </String>
+
+
+<!-------------------------------------------------------->
+<String> <Name>sec</Name> <Val>FM Equation</Val> </String>
+
+<String> <Name>para</Name> <Val>
+The basic FM equation is presented in {cnxn target=&quot;eqn-fm&quot;/}:
+</Val> </String>
+
+<Cluster> <Name>equation</Name> <NumElts>3</NumElts>
+<String> <Name>ID (optional)</Name> <Val>eqn-fm</Val> </String>
+<String> <Name>name (optional)</Name> <Val></Val> </String>
+<String> <Name>MathML text</Name> <Val>
+<!-- y(t) = Asin(2Pifct + Isin(2Pifmt)) -->
+{m:math}
+ {m:semantics}
+  {m:mrow}
+   {m:mi}y{/m:mi}{m:mo stretchy=&apos;false&apos;}({/m:mo}{m:mi}t{/m:mi}{m:mo stretchy=&apos;false&apos;}){/m:mo}{m:mo}={/m:mo}{m:mi}A{/m:mi}{m:mi}sin{/m:mi}{m:mo}&amp;#x2061;{/m:mo}{m:mo stretchy=&apos;false&apos;}({/m:mo}{m:mn}2{/m:mn}{m:mi}&amp;#x03C0;{/m:mi}{m:msub}
+    {m:mi}f{/m:mi}
+    {m:mi}c{/m:mi}
+   {/m:msub}
+   {m:mi}t{/m:mi}{m:mo}+{/m:mo}{m:mi}I{/m:mi}{m:mi}sin{/m:mi}{m:mo}&amp;#x2061;{/m:mo}{m:mo stretchy=&apos;false&apos;}({/m:mo}{m:mn}2{/m:mn}{m:mi}&amp;#x03C0;{/m:mi}{m:msub}
+    {m:mi}f{/m:mi}
+    {m:mi}m{/m:mi}
+   {/m:msub}
+   {m:mi}t{/m:mi}{m:mo stretchy=&apos;false&apos;}){/m:mo}{m:mo stretchy=&apos;false&apos;}){/m:mo}{m:mo},{/m:mo}
+  {/m:mrow}
+ {m:annotation encoding=&apos;MathType-MTEF&apos;}
+ {/m:annotation}
+ {/m:semantics}
+{/m:math},
+</Val> </String>
+</Cluster>
+
+<String> <Name>para</Name> <Val>
+where the parameters are defined as follows:
+</Val> </String>
+
+<Cluster> <Name>list</Name> <NumElts>3</NumElts>
+<EW> <Name>type</Name> <Choice>Bulleted</Choice> <Choice>Enumerated</Choice> <Val>0</Val> </EW>
+<String> <Name>list name (optional)</Name> <Val></Val> </String>
+<Array> <Name>list items</Name> <Dimsize>3</Dimsize>
+<String> <Name>String</Name> <Val>
+<!-- fc= -->
+{m:math}
+ {m:semantics}
+  {m:mrow}
+   {m:msub}
+    {m:mi}f{/m:mi}
+    {m:mi}c{/m:mi}
+   {/m:msub}
+   {m:mo}={/m:mo}
+  {/m:mrow}
+ {m:annotation encoding=&apos;MathType-MTEF&apos;}
+ {/m:annotation}
+ {/m:semantics}
+{/m:math} carrier frequency (Hz)
+</Val> </String>
+<String> <Name>String</Name> <Val>
+<!-- fm= -->
+{m:math}
+ {m:semantics}
+  {m:mrow}
+   {m:msub}
+    {m:mi}f{/m:mi}
+    {m:mi}m{/m:mi}
+   {/m:msub}
+   {m:mo}={/m:mo}
+  {/m:mrow}
+ {m:annotation encoding=&apos;MathType-MTEF&apos;}
+ {/m:annotation}
+ {/m:semantics}
+{/m:math} modulation frequency (Hz)
+</Val> </String>
+<String> <Name>String</Name> <Val>
+<!-- I= -->
+{m:math display=&apos;block&apos;}
+ {m:semantics}
+  {m:mrow}
+   {m:mi}I{/m:mi}{m:mo}={/m:mo}
+  {/m:mrow}
+ {m:annotation encoding=&apos;MathType-MTEF&apos;}
+ {/m:annotation}
+ {/m:semantics}
+{/m:math} modulation index
+</Val> </String>
+</Array>
+</Cluster>
+
+<String> <Name>para</Name> <Val>
+		The screencast video of {cnxn target=&quot;video-fm-eqn&quot;/} continues the discussion by explaining the significance of each part of {cnxn target=&quot;eqn-fm&quot;/},
+		and demonstrates in a qualitative fashion how the different parameters of the equation influence the spectrum of the audio signal. The LabVIEW VI
+		demonstrated in the video is available here: {link src=&quot;fm_demo1.vi&quot;}fm_demo1.vi{/link}.
+</Val> </String>
+
+<Cluster> <Name>video</Name> <NumElts>4</NumElts>
+<String> <Name>ID (optional)</Name> <Val>video-fm-eqn</Val> </String>
+<String> <Name>video name</Name> <Val>eqn</Val> </String>
+<String> <Name>webpage title</Name> <Val>FM equation</Val> </String>
+<String> <Name>caption</Name> <Val>Significance of each part of the basic FM equation, and audio demonstration.</Val> </String>
+</Cluster>
+
+
+<String> <Name>secend</Name> <Val></Val> </String>
+
+
+<!-------------------------------------------------------->
+<String> <Name>sec</Name> <Val>FM Spectrum</Val> </String>
+
+<String> <Name>para</Name> <Val>
+The following trigonometric identity facilitates quantitative understanding of the spectrum produced by the basic FM equation of {cnxn target=&quot;eqn-fm&quot;/}:
+</Val> </String>
+
+<Cluster> <Name>equation</Name> <NumElts>3</NumElts>
+<String> <Name>ID (optional)</Name> <Val>eqn-trigid</Val> </String>
+<String> <Name>name (optional)</Name> <Val></Val> </String>
+<String> <Name>MathML text</Name> <Val>
+<!-- trig ident with Bessel functions -->
+{m:math display=&apos;block&apos;}
+ {m:semantics}
+  {m:mrow}
+   {m:mi}sin{/m:mi}{m:mo}&amp;#x2061;{/m:mo}{m:mo stretchy=&apos;false&apos;}({/m:mo}{m:mi}&amp;#x03B8;{/m:mi}{m:mo}+{/m:mo}{m:mi}a{/m:mi}{m:mi}sin{/m:mi}{m:mo}&amp;#x2061;{/m:mo}{m:mi}&amp;#x03B2;{/m:mi}{m:mo stretchy=&apos;false&apos;}){/m:mo}{m:mo}={/m:mo}{m:msub}
+    {m:mi}J{/m:mi}
+    {m:mn}0{/m:mn}
+   {/m:msub}
+   {m:mo stretchy=&apos;false&apos;}({/m:mo}{m:mi}a{/m:mi}{m:mo stretchy=&apos;false&apos;}){/m:mo}{m:mi}sin{/m:mi}{m:mo}&amp;#x2061;{/m:mo}{m:mi}&amp;#x03B8;{/m:mi}{m:mo}+{/m:mo}{m:mstyle displaystyle=&apos;true&apos;}
+    {m:munderover}
+     {m:mo}&amp;#x2211;{/m:mo}
+     {m:mrow}
+      {m:mi}k{/m:mi}{m:mo}={/m:mo}{m:mn}1{/m:mn}
+     {/m:mrow}
+     {m:mi}&amp;#x221E;{/m:mi}
+    {/m:munderover}
+    {m:mrow}
+     {m:msub}
+      {m:mi}J{/m:mi}
+      {m:mi}k{/m:mi}
+     {/m:msub}
+     {m:mo stretchy=&apos;false&apos;}({/m:mo}{m:mi}a{/m:mi}{m:mo stretchy=&apos;false&apos;}){/m:mo}{m:mrow}{m:mo}[{/m:mo} {m:mrow}
+      {m:mi}sin{/m:mi}{m:mo}&amp;#x2061;{/m:mo}{m:mo stretchy=&apos;false&apos;}({/m:mo}{m:mi}&amp;#x03B8;{/m:mi}{m:mo}+{/m:mo}{m:mi}k{/m:mi}{m:mi}&amp;#x03B2;{/m:mi}{m:mo stretchy=&apos;false&apos;}){/m:mo}{m:mo}+{/m:mo}{m:msup}
+       {m:mrow}
+        {m:mo stretchy=&apos;false&apos;}({/m:mo}{m:mo}&amp;#x2212;{/m:mo}{m:mn}1{/m:mn}{m:mo stretchy=&apos;false&apos;}){/m:mo}
+       {/m:mrow}
+       {m:mi}k{/m:mi}
+      {/m:msup}
+      {m:mi}sin{/m:mi}{m:mo}&amp;#x2061;{/m:mo}{m:mo stretchy=&apos;false&apos;}({/m:mo}{m:mi}&amp;#x03B8;{/m:mi}{m:mo}&amp;#x2212;{/m:mo}{m:mi}k{/m:mi}{m:mi}&amp;#x03B2;{/m:mi}{m:mo stretchy=&apos;false&apos;}){/m:mo}
+     {/m:mrow} {m:mo}]{/m:mo}{/m:mrow}
+    {/m:mrow}
+   {/m:mstyle}
+  {/m:mrow}
+ {m:annotation encoding=&apos;MathType-MTEF&apos;}
+ {/m:annotation}
+ {/m:semantics}
+{/m:math}
+</Val> </String>
+</Cluster>
+
+<String> <Name>para</Name> <Val>
+The term
+{m:math}
+ {m:semantics}
+  {m:mrow}
+   {m:msub}
+    {m:mi}J{/m:mi}
+    {m:mi}k{/m:mi}
+   {/m:msub}
+   {m:mo stretchy=&apos;false&apos;}({/m:mo}{m:mi}a{/m:mi}{m:mo stretchy=&apos;false&apos;}){/m:mo}
+  {/m:mrow}
+ {m:annotation encoding=&apos;MathType-MTEF&apos;}
+ {/m:annotation}
+ {/m:semantics}
+ {/m:math} defines a Bessel function of the first kind of order 
+{m:math}
+ {m:semantics}
+  {m:mi}k{/m:mi}
+ {m:annotation encoding=&apos;MathType-MTEF&apos;}
+ {/m:annotation}
+ {/m:semantics}
+ {/m:math} evaluated at the value 
+{m:math}
+ {m:semantics}
+  {m:mi}a{/m:mi}
+ {m:annotation encoding=&apos;MathType-MTEF&apos;}
+ {/m:annotation}
+ {/m:semantics}
+{/m:math}.
+</Val> </String>
+
+<String> <Name>para</Name> <Val>
+		Note how the left-hand side of the identity possesses exactly the same form as the basic FM equation of {cnxn target=&quot;eqn-fm&quot;/}. Therefore, the right-hand
+		side of the identity explains where the spectral components called {term}sidebands{/term} are located, and also indicates the amplitude of each
+		spectral component. The screencast video of {cnxn target=&quot;video-sidebands&quot;/} continues the discussion by explaining the significance of each part of 
+		{cnxn target=&quot;eqn-trigid&quot;/}, especially the location of the sideband spectral components.
+</Val> </String>
+
+<Cluster> <Name>video</Name> <NumElts>4</NumElts>
+<String> <Name>ID (optional)</Name> <Val>video-sidebands</Val> </String>
+<String> <Name>video name</Name> <Val>sidebands</Val> </String>
+<String> <Name>webpage title</Name> <Val>FM sidebands</Val> </String>
+<String> <Name>caption</Name> <Val>Trig identity of {cnxn target=&quot;eqn-trigid&quot;/} and location of sideband spectral components </Val> </String>
+</Cluster>
+
+<String> <Name>para</Name> <Val>
+		As discussed in the video of {cnxn target=&quot;video-sidebands&quot;/}, the basic FM equation produces an infinite number of sideband components; this is also evident by
+		noting that the summation of {cnxn target=&quot;eqn-trigid&quot;/} runs from k=1 to infinity. However, the amplitude of each sideband is controlled by the Bessel function,
+		and non-zero amplitudes tend to cluster around the central carrier frequency.
+		The screencast video of {cnxn target=&quot;video-bessel&quot;/} continues the discussion by examining the behavior of the Bessel function
+{m:math}
+ {m:semantics}
+  {m:mrow}
+   {m:msub}
+    {m:mi}J{/m:mi}
+    {m:mi}k{/m:mi}
+   {/m:msub}
+   {m:mo stretchy=&apos;false&apos;}({/m:mo}{m:mi}a{/m:mi}{m:mo stretchy=&apos;false&apos;}){/m:mo}
+  {/m:mrow}
+ {m:annotation encoding=&apos;MathType-MTEF&apos;}
+ {/m:annotation}
+ {/m:semantics}
+ {/m:math} when its two parameters are varied, and shows how these parameters link to the modulation index and sideband number.
+</Val> </String>
+
+<Cluster> <Name>video</Name> <NumElts>4</NumElts>
+<String> <Name>ID (optional)</Name> <Val>video-bessel</Val> </String>
+<String> <Name>video name</Name> <Val>bessel</Val> </String>
+<String> <Name>webpage title</Name> <Val>Bessel function</Val> </String>
+<String> <Name>caption</Name> <Val>Discussion of the Bessel function
+{m:math}
+ {m:semantics}
+  {m:mrow}
+   {m:msub}
+    {m:mi}J{/m:mi}
+    {m:mi}k{/m:mi}
+   {/m:msub}
+   {m:mo stretchy=&apos;false&apos;}({/m:mo}{m:mi}a{/m:mi}{m:mo stretchy=&apos;false&apos;}){/m:mo}
+  {/m:mrow}
+ {m:annotation encoding=&apos;MathType-MTEF&apos;}
+ {/m:annotation}
+ {/m:semantics}
+ {/m:math} and its relationship to modulation index and sideband number
+</Val> </String>
+</Cluster>
+
+<String> <Name>para</Name> <Val>
+At this point you have developed a better quantitative understanding of the spectrum produced by the basic FM equation. The screencast video of {cnxn target=&quot;video-eqn-revisit&quot;/} 
+revisits the earlier audio demonstration of the FM equation in order to relate the spectrum to its quantitative explanation.
+</Val> </String>
+
+<Cluster> <Name>video</Name> <NumElts>4</NumElts>
+<String> <Name>ID (optional)</Name> <Val>video-eqn-revisit</Val> </String>
+<String> <Name>video name</Name> <Val>eqn-revisit</Val> </String>
+<String> <Name>webpage title</Name> <Val>FM demo revisited</Val> </String>
+<String> <Name>caption</Name> <Val>FM audio demonstration revisited</Val> </String>
+</Cluster>
+
+
+
+<String> <Name>secend</Name> <Val></Val> </String>
+
+
+<!-------------------------------------------------------->
+<String> <Name>sec</Name> <Val>Harmonicity Ratio</Val> </String>
+
+<String> <Name>para</Name> <Val>
+The basic FM equation generates a cluster of spectral components centered about the carrier frequency 
+<!-- fc -->
+{m:math}
+ {m:semantics}
+  {m:mrow}
+   {m:msub}
+    {m:mi}f{/m:mi}
+    {m:mi}c{/m:mi}
+   {/m:msub}
+  {/m:mrow}
+ {m:annotation encoding=&apos;MathType-MTEF&apos;}
+ {/m:annotation}
+ {/m:semantics}
+ {/m:math} with cluster density controlled by the modulation frequency
+<!-- fm -->
+{m:math}
+ {m:semantics}
+  {m:mrow}
+   {m:msub}
+    {m:mi}f{/m:mi}
+    {m:mi}m{/m:mi}
+   {/m:msub}
+  {/m:mrow}
+ {m:annotation encoding=&apos;MathType-MTEF&apos;}
+ {/m:annotation}
+ {/m:semantics}
+ {/m:math}. Recall that we perceive multiple spectral components to be a single tone when the components are located at integer multiples of a fundamental frequency, otherwise we
+ perceive multiple tones with different pitches. The {term}harmonicity ratio{/term}
+{m:math}
+ {m:semantics}
+  {m:mi}H{/m:mi}
+ {m:annotation encoding=&apos;MathType-MTEF&apos;}
+ {/m:annotation}
+ {/m:semantics}
+{/m:math} provides a convenient way to choose the modulation frequency to produce either harmonic or inharmonic tones. Harmonicity ratio is defined as:
+</Val> </String>
+
+<Cluster> <Name>equation</Name> <NumElts>3</NumElts>
+<String> <Name>ID (optional)</Name> <Val>eqn-H</Val> </String>
+<String> <Name>name (optional)</Name> <Val></Val> </String>
+<String> <Name>MathML text</Name> <Val>
+<!-- H=fm/fc-->
+{m:math}
+ {m:semantics}
+  {m:mrow}
+   {m:mi}H{/m:mi}{m:mo}={/m:mo}{m:mfrac}
+    {m:mrow}
+     {m:msub}
+      {m:mi}f{/m:mi}
+      {m:mi}m{/m:mi}
+     {/m:msub}
+    {/m:mrow}
+    {m:mrow}
+     {m:msub}
+      {m:mi}f{/m:mi}
+      {m:mi}c{/m:mi}
+     {/m:msub}
+    {/m:mrow}
+   {/m:mfrac}
+  {/m:mrow}
+ {m:annotation encoding=&apos;MathType-MTEF&apos;}
+ {/m:annotation}
+ {/m:semantics}
+{/m:math}
+</Val> </String>
+</Cluster>
+
+<String> <Name>para</Name> <Val>
+Harmonicity ratios that involve an integer, i.e.,
+{m:math}
+ {m:semantics}
+  {m:mrow}
+   {m:mi}H{/m:mi}{m:mo}={/m:mo}{m:mi}N{/m:mi}
+  {/m:mrow}
+ {m:annotation encoding=&apos;MathType-MTEF&apos;}
+ {/m:annotation}
+ {/m:semantics}
+{/m:math}
+or
+{m:math}
+ {m:semantics}
+  {m:mrow}
+   {m:mi}H{/m:mi}{m:mo}={/m:mo}{m:mrow}{m:mn}1{/m:mn}{m:mo}/{/m:mo}{m:mi}N{/m:mi}{/m:mrow}
+  {/m:mrow}
+ {m:annotation encoding=&apos;MathType-MTEF&apos;}
+ {/m:annotation}
+ {/m:semantics}
+ {/m:math}
+for
+{m:math}
+ {m:semantics}
+  {m:mrow}
+   {m:mi}N{/m:mi}{m:mo}&amp;#x2265;{/m:mo}{m:mn}1{/m:mn}
+  {/m:mrow}
+ {m:annotation encoding=&apos;MathType-MTEF&apos;}
+ {/m:annotation}
+ {/m:semantics}
+{/m:math}
+result in sideband spacing that follows a harmonic relationship. On the other hand, non-integer-based harmonicity ratios, especially using irrational numbers
+such as
+{m:math}
+ {m:semantics}
+  {m:mi}&amp;#x03C0;{/m:mi}
+ {m:annotation encoding=&apos;MathType-MTEF&apos;}
+ {/m:annotation}
+ {/m:semantics}
+{/m:math}
+and
+{m:math}
+ {m:semantics}
+  {m:mrow}
+   {m:msqrt}
+    {m:mn}2{/m:mn}
+   {/m:msqrt}
+  {/m:mrow}
+ {m:annotation encoding=&apos;MathType-MTEF&apos;}
+ {/m:annotation}
+ {/m:semantics}
+{/m:math}
+will produce interesting inharmonic sounds.
+</Val> </String>
+
+<String> <Name>para</Name> <Val>
+		Try experimenting with the basic FM equation yourself. The LabVIEW VI {link src=&quot;fm_demo2.vi&quot;}fm_demo2.vi{/link} provides front-panel controls for
+		carrier frequency, modulation index, and harmonicity ratio. You can create an amazingly wide variety of sound effects by strategically choosing specific
+		values for these three parameters. The screencast video of {cnxn target=&quot;video-fm-demo2&quot;/} illustrates how to use the VI and provides some
+		ideas about how to choose the parameters.
+</Val> </String>
+
+<Cluster> <Name>video</Name> <NumElts>4</NumElts>
+<String> <Name>ID (optional)</Name> <Val>video-fm-demo2</Val> </String>
+<String> <Name>video name</Name> <Val>fm-demo2</Val> </String>
+<String> <Name>webpage title</Name> <Val>FM demo</Val> </String>
+<String> <Name>caption</Name> <Val>Demonstration of fm_demo2.vi</Val> </String>
+</Cluster>
+
+
+
+<String> <Name>secend</Name> <Val></Val> </String>
+
+
+<!-------------------------------------------------------->
+<String> <Name>sec</Name> <Val>References</Val> </String>
+
+<Cluster> <Name>list</Name> <NumElts>3</NumElts>
+<EW> <Name>type</Name> <Choice>Bulleted</Choice> <Choice>Enumerated</Choice> <Val>0</Val> </EW>
+<String> <Name>list name (optional)</Name> <Val></Val> </String>
+<Array> <Name>list items</Name> <Dimsize>2</Dimsize>
+	<String> <Name>String</Name> <Val>Moore, F.R., "Elements of Computer Music," Prentice-Hall, 1990, ISBN 0-13-252552-6.</Val> </String>
+<String> <Name>String</Name> <Val>Dodge, C. and T.A. Jerse, "Computer Music: Synthesis, Composition, and Performance," 2nd ed., Schirmer Books, 1997, ISBN 0-02-864682-7. </Val> </String>
+</Array>
+</Cluster>
+
+
+
+<String> <Name>secend</Name> <Val></Val> </String>
+<!-------------------------------------------------------->
+
+</LVData>

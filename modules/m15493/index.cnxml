@@ -1,0 +1,51 @@
+<document xmlns="http://cnx.rice.edu/cnxml">
+  <title>Frequency Modulation (FM) Techniques in LabVIEW</title>
+  <metadata xmlns:md="http://cnx.rice.edu/mdml">
+  <md:content-id>m15493</md:content-id>
+  <md:title>Frequency Modulation (FM) Techniques in LabVIEW</md:title>
+  <md:abstract>Frequency modulation synthesis (FM synthesis) creates a rich spectrum using only
+two sinusoidal oscillators. Implementing the basic FM synthesis equation in LabVIEW requires a special technique to make one oscillator vary the phase function of the other oscillator. Learn how to implement the basic FM equation, and also hear an audio demonstration of the equation in action.</md:abstract>
+  <md:uuid>fe034558-7ad9-42dc-af02-8871641c7e81</md:uuid>
+</metadata>
+
+<content>
+
+<table id="labview_banner" frame="none" summary=""><tgroup cols="2">
+<colspec rowsep="0" colsep="0"/> <colspec colwidth="6in" rowsep="0" colsep="0"/>
+<tbody>
+  <row>
+    <entry morerows="3"><media id="idm762560" alt=""><image src="../../media/LabVIEWq.png" mime-type="image/png"/></media></entry>
+    <entry> This module refers to LabVIEW, a software development environment that features a graphical programming language.
+       Please see the <link document="m15428">LabVIEW QuickStart Guide</link> module for tutorials and documentation that will help you:</entry>
+  </row>
+  <row> <entry>• Apply LabVIEW to Audio Signal Processing </entry> </row>
+  <row> <entry>• Get started with LabVIEW</entry> </row>
+  <row> <entry>• Obtain a fully-functional evaluation edition of LabVIEW</entry> </row>
+</tbody>
+</tgroup>
+</table>
+
+
+<section id="sec1">
+<title>Overview</title>
+
+<para id="par2">
+		<term>Frequency modulation synthesis</term> (<term>FM synthesis</term>) creates a rich spectrum
+		using only two sinusoidal oscillators; refer to <link document="m15482">FM Mathematics</link> 
+		for a complete treatment of the mathematics of FM synthesis. Implementing the basic FM synthesis
+		equation in LabVIEW requires a special technique to make one sinusoidal oscillator vary
+		the <emphasis>phase function</emphasis> of the other sinusoidal oscillator. The following
+		screencast video walks you through the implementation process of the basic FM equation and
+		includes an audio demonstration of the equation in action.</para>
+
+<para id="par3">		Refer to <link document="m15430">TripleDisplay</link> to install the front-panel indicator used to view the signal spectrum.
+</para>
+
+<figure id="video4"><title><link url="https://youtu.be/BS1PH5GUHh8" window="new">https://youtu.be/BS1PH5GUHh8</link> (10:23)</title><media id="eip-idm488724464" display="block" alt="Insert alt text here"><video mime-type="video/mpeg" src="https://www.youtube.com/embed/BS1PH5GUHh8?rel=0" autoplay="false" width="640" height="460"/></media>
+
+
+<caption>[video] Implementing the basic FM synthesis equation in LabVIEW
+</caption></figure></section>
+
+</content>
+</document>

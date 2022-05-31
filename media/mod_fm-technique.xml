@@ -1,0 +1,34 @@
+<!--title = Frequency Modulation (FM) Techniques in LabVIEW
+-->
+
+<?xml version='1.0' standalone='yes' ?>
+<LVData>
+<Version>8.2</Version>
+
+<!-------------------------------------------------------->
+<String> <Name>sec</Name> <Val>Overview</Val> </String>
+
+<String> <Name>para</Name> <Val>
+		{term}Frequency modulation synthesis{/term} ({term}FM synthesis{/term}) creates a rich spectrum
+		using only two sinusoidal oscillators; refer to {cnxn document=&quot;m????&quot;}FM Mathematics{/cnxn} 
+		for a complete treatment of the mathematics of FM synthesis. Implementing the basic FM synthesis
+		equation in LabVIEW requires a special technique in order to make one sinusoidal oscillator vary
+		the {emphasis}phase function{/emphasis} of the other sinusoidal oscillator. The following
+		screencast module walks you through the process of implementing the basic FM equation, and also
+		includes an audio demonstration of the equation in action.
+</Val> </String>
+
+<Cluster> <Name>video</Name> <NumElts>4</NumElts>
+<String> <Name>ID (optional)</Name> <Val></Val> </String>
+<String> <Name>video name</Name> <Val>implement</Val> </String>
+<String> <Name>webpage title</Name> <Val>FM equation in LabVIEW</Val> </String>
+<String> <Name>caption</Name> <Val>Implmenting the basic FM synthesis equation in LabVIEW.</Val> </String>
+</Cluster>
+
+
+
+
+<String> <Name>secend</Name> <Val></Val> </String>
+<!-------------------------------------------------------->
+
+</LVData>

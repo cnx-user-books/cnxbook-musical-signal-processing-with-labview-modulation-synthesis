@@ -1,0 +1,127 @@
+<document xmlns="http://cnx.rice.edu/cnxml" xmlns:md="http://cnx.rice.edu/mdml">
+  <title>[ mini-project ] Chowning FM Synthesis Instruments</title>
+  <metadata><md:content-id>undefined</md:content-id><md:title/><md:uuid>e639cc78-6580-441c-adb0-62e46fb0c1d3</md:uuid>
+</metadata>
+
+<content>
+
+<table frame="none" id="labview_banner" summary=""><tgroup cols="2">
+<colspec rowsep="0" colsep="0"/> <colspec colwidth="6in" rowsep="0" colsep="0"/>
+<tbody>
+  <row>
+    <entry morerows="3"><media id="idm2182448" alt=""><image src="../../media/LabVIEWq.png" mime-type="image/png"/></media></entry>
+    <entry> This module refers to LabVIEW, a software development environment that features a graphical programming language.
+       Please see the <link document="m15428">LabVIEW QuickStart Guide</link> module for tutorials and documentation that will help you:</entry>
+  </row>
+  <row> <entry>• Apply LabVIEW to Audio Signal Processing </entry> </row>
+  <row> <entry>• Get started with LabVIEW</entry> </row>
+  <row> <entry>• Obtain a fully-functional evaluation edition of LabVIEW</entry> </row>
+</tbody>
+</tgroup>
+</table>
+
+
+<section id="sec1">
+<title>Objective</title>
+
+<para id="par2">
+<term>FM synthesis</term> creates rich spectra from only two sinusoidal oscillators, and is able to emulate the sound of many physical musical instruments. John Chowning's seminal publication
+on audio-range frequency modulation (FM) in 1973 describes a number of different orchestral instruments such as woodwinds, brass, and percussion that can be created merely by
+adjusting a few basic parameters of the basic FM equation.</para>
+
+<para id="par3">In this mini-project, implement several different Chowning FM instruments and compare them to the sounds of physical instruments. 
+Also develop code to model the Chowning algorithms as LabVIEW <term>virtual musical instruments</term> (<term>VMIs</term>) to be "played" by a MIDI file 
+within <term>MIDI JamSession</term>.
+</para>
+
+</section>
+
+<section id="sec4">
+<title>Prerequisite Modules</title>
+
+<para id="par5">
+If you have not done so already, please study the prerequisite modules 
+<link document="m15482">FM Mathematics</link> and <link document="m15494">Chowning FM Synthesis Instruments in LabVIEW</link>. 
+If you are relatively new to LabVIEW, consider taking the course <link document="col10440">LabVIEW Techniques for Audio Signal Processing</link> which provides the foundation you need to complete this mini-project activity, including working with arrays, creating subVIs, playing an array to the soundcard, and saving an array as a .wav sound file.
+</para>
+
+</section>
+
+<section id="sec6">
+<title>Deliverables</title>
+
+<list id="list7" list-type="bulleted">
+
+<item> All LabVIEW code that you develop (block diagrams and front panels) </item>
+<item> All generated sounds in .wav format </item>
+<item> Any plots or diagrams requested </item>
+<item> Summary write-up of your results </item>
+
+</list>
+
+</section>
+
+<section id="sec8">
+<title>Part 1: Chowning FM Instruments</title>
+
+<para id="par9">
+<link document="m15494">Chowning FM Synthesis Instruments in LabVIEW</link> provides the specifications for a generic FM synthesis instrument, parameters for a number of different instruments,
+and a screencast video that walks through the complete process to implement the Chowning clarinet in LabVIEW. Refer to the PDF document in that module that contains the
+parameters for the remaining instruments: bell, wood-drum, brass, and bassoon. Create your own LabVIEW implementation of each of these four instruments (the clarinet VI is available
+in that module, as well).</para>
+
+<para id="par10">Save a representative sound from each of the five Chowning instruments to a .wav file.
+</para>
+
+<note id="idm4634288">
+		Consider using an audio editor such as <link url="http://audacity.sourceforge.net">Audacity</link> to merge the individual .wav files into a single .wav file that
+		you submit as your deliverable. You can also add your own voice annotation to explain your work.
+</note>
+
+</section>
+
+<section id="sec11">
+<title>Part 2: Comparison with Physical Instruments</title>
+
+<para id="par12">
+		Visit the <term>Musical Instrument Samples</term> database created by the Electronic Music Studios of the University of Iowa at
+		<link url="http://theremin.music.uiowa.edu/MIS.html">http://theremin.music.uiowa.edu/MIS.html</link>.
+		These recordings of actual instruments were made inside an anechoic chamber to eliminate reflections and other artifacts, so the spectra of the 
+		instruments are as accurate as possible. The files are stored in AIFF format; use an audio editor such as <link url="http://audacity.sourceforge.net">Audacity</link>
+	      	to import the AIFF format. Audacity also includes a tool to view the spectra of the soundfile.</para>
+
+<para id="par13">		Compare and contrast the FM sounds you created for brass, clarinet, and bassoon to those of the real instruments. Consider time-domain envelope shape and spectrogram patterns.
+</para>
+
+</section>
+
+<section id="sec14">
+<title>Part 3: Chowning VMIs for MIDI JamSession</title>
+
+<para id="par15">
+		In this part, convert each of the five Chowning instruments you implemented in Part 1 into its own <term>virtual musical instrument</term> (<term>VMI</term> for short) 
+		that can be played by "MIDI JamSession." If necessary, visit <link document="m15053">MIDI JamSession</link>, download the application VI .zip file, and view the 
+		screencast video in that module to learn more about the application and how to create your own VMI. Your VMI will accept parameters that specify 
+		frequency, amplitude, and duration of a single note, and will produce a corresponding array of audio samples.</para>
+
+<para id="par16">		You may wish to keep all of your existing front-panel controls available so that you can listen to your VMI during development. Adjust the parameters to obtain 
+		pleasing and realistic settings, and convert the front-panel controls to constants and remove all indicators. Your finished VMI must not contain any front-panel 
+		controls or indicators beyond those provided in the prototype instrument.</para>
+
+<para id="par17">		Finally, choose a suitable MIDI file and use MIDI JamSession to play your FM VMIs. MIDI files that contain multiple channels are ideal, because you can individually
+		assign each of your five VMIs to a different instrument.</para>
+
+<para id="par18">		Create a .wav file of your finished work.
+</para>
+
+<note type="Important" id="idp5317408"><label>Important</label>
+		MIDI percussion events are found on Channel 10, a reasonable place to use your wood-drum instrument. Be aware that the "frequency" value
+		produced by the prototype VMI derives directly from the "note number" value of the MIDI "Note On" messages in the file. On Channel 10, the note number selects from
+		a palette of different percussion instruments as defined in the <term>General MIDI Sound Set</term> (<link url="http://www.midi.org/about-midi/gm/gm1sound.shtml">http://www.midi.org/about-midi/gm/gm1sound.shtml</link>), so interpreting the value as frequency is meaningless. You can either set up your wood-drum to produce the same waveform independent
+		of the frequency parameter, or you can devise a scheme to translate the note number into useful parameter change for your instruments.
+</note>
+
+</section>
+
+</content>
+</document>

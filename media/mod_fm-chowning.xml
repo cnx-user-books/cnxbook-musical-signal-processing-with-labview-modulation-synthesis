@@ -1,0 +1,194 @@
+<!--title = Chowning Instruments with FM Synthesis
+-->
+
+<?xml version='1.0' standalone='yes' ?>
+<LVData>
+<Version>8.2</Version>
+
+<!-------------------------------------------------------->
+<String> <Name>sec</Name> <Val>Overview</Val> </String>
+
+<String> <Name>para</Name> <Val>
+		{term}Frequency modulation synthesis{/term} ({term}FM synthesis{/term}) produces incredibly rich
+		spectra from only two sinusoidal oscillators; refer to {cnxn document=&quot;m????&quot;}FM Mathematics{/cnxn} 
+		for a complete description of the spectral characteristics of FM synthesis. Even more interesting
+		sounds can be produced by using a time-varying modulation index to alter the effective bandwidth and
+		sideband amplitudes over time. This relatively simple modification to the basic FM equation can be
+		used to create tones with time-varying spectra that emulates many types of physical musical instruments.
+
+		John Chowning pioneered FM synthesis in the 1970s, and demonstrated how the technique could simulate
+		instruments such as brass, woodwinds, and percussion. These techniques are the subject of this module.
+</Val> </String>
+
+<String> <Name>secend</Name> <Val></Val> </String>
+
+
+<!-------------------------------------------------------->
+<String> <Name>sec</Name> <Val>Significance of Time-Varying Spectra</Val> </String>
+
+<String> <Name>para</Name> <Val>
+		Physical musical instruments produce audio spectra that evolves with time. A typical sound begins with some type of dynamic
+		transient, for example, as pressure builds up within a brass instrument, or when a percussion instrument is first struck. 
+		The sound continues with some type of quasi steady-state behavior when mechanical energy is continually applied, i.e., blowing
+		on a flute, bowing a violin string, and repeatedly striking a gong. Once the mechanical energy input ceases, the sound
+		concludes by decaying in some fashion to silence.
+
+		Clearly the amplitude of the instrument's audio signal changes during the course of the tone, following the typical attack/decay/sustain/release (ADSR)
+		envelope described in {cnxn document=&quot;m????&quot;}Analog Synthesis{/cnxn}. Even more importantly, the {emphasis}intensity{/emphasis} of the
+		higher-frequency spectral components changes, as well. The high-frequency components are often more evident during the initial
+		transient. In fact, the dynamic nature of the spectra during the instrument's transient plays an important role in our perception of
+		timbre.
+</Val> </String>
+
+
+<String> <Name>secend</Name> <Val></Val> </String>
+
+
+<!-------------------------------------------------------->
+<String> <Name>sec</Name> <Val>FM Equation with Time-Varying Modulation Index</Val> </String>
+
+<String> <Name>para</Name> <Val>
+The basic FM equation with time-varying amplitude and modulation index is presented in {cnxn target=&quot;eqn-fm&quot;/}:
+</Val> </String>
+
+<Cluster> <Name>equation</Name> <NumElts>3</NumElts>
+<String> <Name>ID (optional)</Name> <Val>eqn-fm</Val> </String>
+<String> <Name>name (optional)</Name> <Val></Val> </String>
+<String> <Name>MathML text</Name> <Val>
+<!-- y(t) = a(t)sin(2Pifct + i(t)sin(2Pifmt)) -->
+{m:math}
+ {m:semantics}
+  {m:mrow}
+   {m:mi}y{/m:mi}{m:mo stretchy=&apos;false&apos;}({/m:mo}{m:mi}t{/m:mi}{m:mo stretchy=&apos;false&apos;}){/m:mo}{m:mo}={/m:mo}{m:mi}a{/m:mi}{m:mo stretchy=&apos;false&apos;}({/m:mo}{m:mi}t{/m:mi}{m:mo stretchy=&apos;false&apos;}){/m:mo}{m:mi}sin{/m:mi}{m:mo}&amp;#x2061;{/m:mo}{m:mo stretchy=&apos;false&apos;}({/m:mo}{m:mn}2{/m:mn}{m:mi}&amp;#x03C0;{/m:mi}{m:msub}
+    {m:mi}f{/m:mi}
+    {m:mi}c{/m:mi}
+   {/m:msub}
+   {m:mi}t{/m:mi}{m:mo}+{/m:mo}{m:mi}i{/m:mi}{m:mo stretchy=&apos;false&apos;}({/m:mo}{m:mi}t{/m:mi}{m:mo stretchy=&apos;false&apos;}){/m:mo}{m:mi}sin{/m:mi}{m:mo}&amp;#x2061;{/m:mo}{m:mo stretchy=&apos;false&apos;}({/m:mo}{m:mn}2{/m:mn}{m:mi}&amp;#x03C0;{/m:mi}{m:msub}
+    {m:mi}f{/m:mi}
+    {m:mi}m{/m:mi}
+   {/m:msub}
+   {m:mi}t{/m:mi}{m:mo stretchy=&apos;false&apos;}){/m:mo}{m:mo stretchy=&apos;false&apos;}){/m:mo}
+  {/m:mrow}
+ {m:annotation encoding=&apos;MathType-MTEF&apos;}
+ {/m:annotation}
+ {/m:semantics}
+{/m:math}
+</Val> </String>
+</Cluster>
+
+<String> <Name>para</Name> <Val>
+A physical instrument can be easily modeled with this equation by causing the modulation index
+{m:math}
+ {m:semantics}
+  {m:mrow}
+   {m:mi}i{/m:mi}{m:mo stretchy=&apos;false&apos;}({/m:mo}{m:mi}t{/m:mi}{m:mo stretchy=&apos;false&apos;}){/m:mo}
+  {/m:mrow}
+ {m:annotation encoding=&apos;MathType-MTEF&apos;}
+ {/m:annotation}
+ {/m:semantics}
+{/m:math}
+to {emphasis}track{/emphasis} the time-varying amplitude
+{m:math}
+ {m:semantics}
+  {m:mrow}
+   {m:mi}a{/m:mi}{m:mo stretchy=&apos;false&apos;}({/m:mo}{m:mi}t{/m:mi}{m:mo stretchy=&apos;false&apos;}){/m:mo}
+  {/m:mrow}
+ {m:annotation encoding=&apos;MathType-MTEF&apos;}
+ {/m:annotation}
+ {/m:semantics}
+{/m:math}. In this way a louder portion of the note will also have more sidebands, since the modulation index effectively controls the bandwidth of the FM spectra.
+</Val> </String>
+
+
+<String> <Name>secend</Name> <Val></Val> </String>
+
+
+<!-------------------------------------------------------->
+<String> <Name>sec</Name> <Val>Chowning Instruments</Val> </String>
+
+<String> <Name>para</Name> <Val>
+John Chowning's publication {cite}The Synthesis of Complex Audio Spectra by Means of Frequency Modulation (Journal of the Audio Engineering Society, 21(7), 1973){/cite}
+describes a basic structure to implement the equation of {cnxn target=&quot;eqn-fm&quot;/} that includes the following parameters:
+</Val> </String>
+
+<Cluster> <Name>list</Name> <NumElts>3</NumElts>
+<EW> <Name>type</Name> <Choice>Bulleted</Choice> <Choice>Enumerated</Choice> <Val>0</Val> </EW>
+<String> <Name>list name (optional)</Name> <Val></Val> </String>
+<Array> <Name>list items</Name> <Dimsize>8</Dimsize>
+<String> <Name>String</Name> <Val>A: peak amplitude</Val> </String>
+<String> <Name>String</Name> <Val>Imax: maximum value of modulation index i(t)</Val> </String>
+<String> <Name>String</Name> <Val>Imin: minimum value of modulation index i(t)</Val> </String>
+<String> <Name>String</Name> <Val>fc [Hz]: carrier frequency</Val> </String>
+<String> <Name>String</Name> <Val>H: harmonicity ratio (fm/fc)</Val> </String>
+<String> <Name>String</Name> <Val>duration [s]: duration of generated audio</Val> </String>
+<String> <Name>String</Name> <Val>w1(t): prototype waveform for time-varying amplitude</Val> </String>
+<String> <Name>String</Name> <Val>w2(t): prototype waveform for time-varying modulation index</Val> </String>
+</Array>
+</Cluster>
+
+<String> <Name>para</Name> <Val>
+The prototype waveforms are normalized in both dimensions, i.e., the range and domain are both zero to one. The prototype waveform w1(t) is converted to the time-varying amplitude as
+{m:math}
+ {m:semantics}
+  {m:mrow}
+   {m:mi}a{/m:mi}{m:mo stretchy=&apos;false&apos;}({/m:mo}{m:mi}t{/m:mi}{m:mo stretchy=&apos;false&apos;}){/m:mo}{m:mo}={/m:mo}{m:mi}A{/m:mi}{m:msub}
+    {m:mi}w{/m:mi}
+    {m:mn}1{/m:mn}
+   {/m:msub}
+   {m:mo stretchy=&apos;false&apos;}({/m:mo}{m:mi}t{/m:mi}{m:mo stretchy=&apos;false&apos;}){/m:mo}
+  {/m:mrow}
+ {m:annotation encoding=&apos;MathType-MTEF&apos;}
+ {/m:annotation}
+ {/m:semantics}
+ {/m:math}. The prototype waveformw w2(t) is converted to the time-varying modulation index as
+{m:math}
+ {m:semantics}
+  {m:mrow}
+   {m:mi}i{/m:mi}{m:mo stretchy=&apos;false&apos;}({/m:mo}{m:mi}t{/m:mi}{m:mo stretchy=&apos;false&apos;}){/m:mo}{m:mo}={/m:mo}{m:mo stretchy=&apos;false&apos;}({/m:mo}{m:msub}
+    {m:mi}I{/m:mi}
+    {m:mrow}
+     {m:mtext}max{/m:mtext}
+    {/m:mrow}
+   {/m:msub}
+   {m:mo}&amp;#x2212;{/m:mo}{m:msub}
+    {m:mi}I{/m:mi}
+    {m:mrow}
+     {m:mtext}min{/m:mtext}
+    {/m:mrow}
+   {/m:msub}
+   {m:mo stretchy=&apos;false&apos;}){/m:mo}{m:msub}
+    {m:mi}w{/m:mi}
+    {m:mn}2{/m:mn}
+   {/m:msub}
+   {m:mo stretchy=&apos;false&apos;}({/m:mo}{m:mi}t{/m:mi}{m:mo stretchy=&apos;false&apos;}){/m:mo}{m:mo}+{/m:mo}{m:msub}
+    {m:mi}I{/m:mi}
+    {m:mrow}
+     {m:mtext}min{/m:mtext}
+    {/m:mrow}
+   {/m:msub}
+  {/m:mrow}
+ {m:annotation encoding=&apos;MathType-MTEF&apos;}
+ {/m:annotation}
+ {/m:semantics}
+ {/m:math}.
+ 
+ Representative Chowning FM instrument specifications are described in the PDF document {link src=&quot;chowning_instruments.pdf&quot;}chowning_instruments.pdf{/link}. The screencast
+ video of {cnxn target=&quot;video-chowning&quot;/} walks through the complete process to implement the Chowning clarinet instrument in LabVIEW; the finished VI is available
+ here: {link src=&quot;chowning_clarinet.vi&quot;}chowning_clarinet.vi{/link}. Once you understand the general implementation procedure, you can easily adapt the VI to create
+ the remaining Chowning instruments.
+</Val> </String>
+
+
+<Cluster> <Name>video</Name> <NumElts>4</NumElts>
+<String> <Name>ID (optional)</Name> <Val>video-chowning</Val> </String>
+<String> <Name>video name</Name> <Val>clarinet</Val> </String>
+<String> <Name>webpage title</Name> <Val>Chowning FM instrument</Val> </String>
+<String> <Name>caption</Name> <Val>Implement a Chowning FM instrument in LabVIEW</Val> </String>
+</Cluster>
+
+
+
+<String> <Name>secend</Name> <Val></Val> </String>
+<!-------------------------------------------------------->
+
+</LVData>
